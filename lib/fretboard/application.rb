@@ -2,53 +2,71 @@
 
 require "gtk4"
 require "adwaita"
+require_relative "shortcuts_dialog"
+require_relative "style"
+require_relative "window"
 
 module Fretboard
-  # The port's application: one window, and a status page saying the port has
-  # not been written yet. Everything else grows from here — replace the status
-  # page with the real content, keep the shape.
+  # Application is the app object: one window, the two application-wide
+  # actions, and the accelerators for them and for the window's actions.
+  #
+  # Ported from upstream's src/application.rs. Adwaita::Application is broken
+  # in the Ruby bindings, so the application object comes from Gtk and
+  # Adwaita.init does what AdwApplication's startup would: it initialises
+  # libadwaita's style manager and stylesheet.
   #
   # House style (see .claude/skills/ruby-gtk): every widget is a memoized
   # method, all configuration lives in its `tap`, assembly happens only in
   # `build`, and the launcher is one expression.
   class Application
+    ACCELS = {
+      "app.quit"           => ["<primary>q"],
+      "app.shortcuts"      => ["<Control>question"],
+      "window.close"       => ["<Ctrl>W"],
+      "win.empty-chord"    => ["<Ctrl>E"],
+      "win.focus-entry"    => ["<Ctrl>L"],
+      "win.more-variants"  => ["<Alt>Return"],
+      "win.bookmark-chord" => ["<Ctrl>D"],
+      "win.bookmarks"      => ["<Ctrl><Alt>D"],
+    }.freeze
+
     def build
-      app.tap do
-        app.signal_connect("activate") do
-          window.tap do |win|
-            win.content = toolbar_view
-          end
+      app.tap do |application|
+        application.signal_connect("startup") { Adwaita.init }
 
-          toolbar_view.tap do |view|
-            view.add_top_bar(header_bar)
-            view.content = status_page
-          end
-
+        application.signal_connect("activate") do
+          style.install
+          setup_actions
           window.present
         end
       end
     end
 
-    # Adwaita::Application is broken in the Ruby bindings; the application
-    # object comes from Gtk and only the window is Adwaita.
-    def app = @app ||= Gtk::Application.new("org.rubygtkproject.Fretboard", :default_flags)
+    def run = build.run([])
 
-    def window
-      @window ||= Adwaita::ApplicationWindow.new(app).tap do |win|
-        win.title = "fretboard"
-        win.set_default_size(800, 600)
+    def app = @app ||= Gtk::Application.new(APP_ID, :default_flags)
+
+    def window = @window ||= Window.new(app)
+
+    def style = @style ||= Style.new
+
+    def shortcuts_dialog = @shortcuts_dialog ||= ShortcutsDialog.new
+
+    private
+
+      def setup_actions
+        app.tap do |application|
+          application.add_action(action("quit") { application.quit })
+          application.add_action(action("shortcuts") { shortcuts_dialog.present(window.window) })
+
+          ACCELS.each { |name, accels| application.set_accels_for_action(name, accels) }
+        end
       end
-    end
 
-    def toolbar_view = @toolbar_view ||= Adwaita::ToolbarView.new
-    def header_bar = @header_bar ||= Adwaita::HeaderBar.new
-
-    def status_page
-      @status_page ||= Adwaita::StatusPage.new.tap do |page|
-        page.title = "fretboard"
-        page.description = "The Ruby port has not been written yet."
-        page.icon_name = "applications-engineering-symbolic"
+      def action(name, &handler)
+        Gio::SimpleAction.new(name).tap do |simple|
+          simple.signal_connect("activate") { handler.call }
+        end
       end
-    end
   end
 end

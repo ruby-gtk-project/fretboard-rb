@@ -1,0 +1,136 @@
+/* Ported from upstream data/resources/style.css. The only changes: the three
+   element selectors upstream gets from custom widget CSS names (barre-spin,
+   chord-diagram-toggle) are class selectors here, because this port builds
+   those widgets out of plain GTK widgets rather than GObject subclasses, and
+   the matching CSS classes are added in Ruby. */
+
+.debug {
+  outline: 2px solid green;
+}
+
+.barre-spin button {
+  border-radius: 50%;
+  background: transparent;
+}
+
+.barre-spin button:hover {
+  background: rgba(153, 153, 153, 0.3);
+}
+
+.barre-spin label {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.chord-diagram-toggle button, .fretboard-chord-diagram-top-toggle button{
+  border-radius: 50%;
+  padding: 0;
+  transition-duration: 150ms;
+}
+
+.chord-diagram-toggle button:checked {
+  background: var(--accent-bg-color);
+}
+
+.chord-diagram-toggle button:hover {
+  background: rgba(153, 153, 153, 0.3);
+}
+
+.chord-diagram-toggle button:checked:hover {
+  background: var(--accent-bg-color);
+}
+
+.fretboard-chord-diagram-top-toggle button:checked{
+  background: transparent;
+  box-shadow: none;
+}
+
+.fretboard-chord-diagram-top-toggle, .fretboard-chord-diagram-top-toggle image {
+  color: rgba(153, 153, 153, 0.4);
+}
+
+.fretboard-chord-diagram-top-toggle.open, .fretboard-chord-diagram-top-toggle image.open {
+  color: var(--accent-bg-color);
+}
+
+.fretboard-chord-diagram-top-toggle button:hover {
+  background: rgba(153, 153, 153, 0.3);
+}
+
+.fretboard-chord-name-entry entry {
+  font-size: 1.8rem;
+  padding: 8px 6px;
+  font-weight: 700;
+  border-radius: 12px;
+}
+
+.fretboard-chord-name-entry entry placeholder {
+  color: rgba(125, 125, 125, 0.6);
+}
+
+.fretboard-star-toggle:checked {
+  background: transparent;
+}
+
+.fretboard-star-toggle:checked:hover {
+  background: rgba(125, 125, 125, 0.15);
+}
+
+.fretboard-chord-preview-dot {
+  background: transparent;
+  border-radius: 50%;
+}
+
+.fretboard-chord-preview-dot.active {
+  background: var(--accent-bg-color);
+} 
+
+.no-hover-active:hover, .no-hover-active:active {
+  background: transparent;
+  box-shadow: none;
+}
+
+@media (prefers-contrast: more) {
+  .fretboard-chord-diagram-top-toggle, .fretboard-chord-diagram-top-toggle image {
+    color: rgb(0, 0, 0);
+  }
+
+  .fretboard-chord-diagram-top-toggle.open, .fretboard-chord-diagram-top-toggle image.open {
+    color: @accent_bg_color;
+  }
+
+  .fretboard-chord-diagram-top-toggle button:checked:hover {
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.5);
+  }
+
+  .fretboard-chord-name-entry entry placeholder {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .fretboard-star-toggle:checked:not(:hover) {
+    border: 0;
+    box-shadow: none;
+  }
+
+  .fretboard-chord-preview-dot.active {
+    border: 1px solid @border-color;
+  }
+}
+
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  .fretboard-chord-diagram-top-toggle, .fretboard-chord-diagram-top-toggle image {
+    color: rgb(255, 255, 255);
+  }
+
+  .fretboard-chord-diagram-top-toggle.open, .fretboard-chord-diagram-top-toggle image.open {
+    color: var(--accent-bg-color);
+  }
+
+  .fretboard-chord-diagram-top-toggle button:checked:hover {
+    box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.6);
+  }
+
+  .fretboard-chord-name-entry entry placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
