@@ -4,9 +4,13 @@ Upstream is `origin/main`: Rust + gtk-rs, seven widget classes, each a
 `.blp`/`.rs` pair, plus an application class, a `.ui` shortcuts dialog, a
 GSettings schema and a 48-msgid gettext catalogue in 37 languages.
 
-The port on `ruby` currently has **one** file of app code
-(`lib/fretboard/application.rb`, a placeholder `Adwaita::StatusPage` saying the
-port is not written). Everything below except that stub is missing.
+The port on `ruby` now has **18 files of app code** under
+`lib/fretboard/` (2795 lines including the gem entry point), the vendored
+`data/` tree (chords.txt, 24 barre/backdrop SVGs, 10 symbolic action icons,
+3 app icons, style.css) and `exe/fretboard`. Of the 21 components below,
+**20 exist**; the one outstanding gap is the gettext catalogue (component 21),
+for which there is no `po/` directory and no `gettext` call anywhere in `lib/`
+— every user-facing string is a bare Ruby literal.
 
 Port paths keep the existing `lib/fretboard/` namespace directory that the gem
 layout (`lib/fretboard.rb`, `lib/fretboard/rb/version.rb`, the gemspec) already
@@ -16,27 +20,27 @@ established, rather than the flat `lib/*.rb` of the gnome-contacts-rb pilot.
 
 | # | Upstream file(s) | Port file | Kind | Exists? |
 |---|---|---|---|---|
-| 1 | `src/main.rs` | `lib/fretboard.rb` + `exe/fretboard` | entry point | partial |
-| 2 | `src/application.rs` | `lib/fretboard/application.rb` | application / actions / accels | stub only |
-| 3 | `src/widgets/window.blp` + `window.rs` | `lib/fretboard/window.rb` | main window (3 nav pages) | no |
-| 4 | `src/widgets/window.blp` (`menu primary_menu`) | `lib/fretboard/primary_menu.rb` | menu model | no |
-| 5 | `data/resources/shortcuts-dialog.ui` | `lib/fretboard/shortcuts_dialog.rb` | dialog | no |
-| 6 | `src/widgets/window.rs` (`show_about_dialog`) + `data/…metainfo.xml.in.in` | `lib/fretboard/about_dialog.rb` | dialog | no |
-| 7 | `src/widgets/chord_diagram.blp` + `chord_diagram.rs` | `lib/fretboard/chord_diagram.rb` | composite widget | no |
-| 8 | `src/widgets/chord_diagram_toggle.blp` + `.rs` | `lib/fretboard/chord_diagram_toggle.rb` | widget (fret cell) | no |
-| 9 | `src/widgets/chord_diagram_top_toggle.blp` + `.rs` | `lib/fretboard/chord_diagram_top_toggle.rb` | widget (string head) | no |
-| 10 | `src/widgets/barre_spin.blp` + `.rs` | `lib/fretboard/barre_spin.rb` | widget (spinner) | no |
-| 11 | `src/widgets/chord_name_entry.blp` + `.rs` | `lib/fretboard/chord_name_entry.rb` | widget (entry) | no |
-| 12 | `src/widgets/chord_preview.blp` + `.rs` | `lib/fretboard/chord_preview.rb` | widget (grid cell) | no |
-| 13 | `src/widgets/window.rs` (`more_variants`, `show_bookmarks`) | `lib/fretboard/chord_preview_button.rb` | widget built in a loop | no |
-| 14 | `src/database.rs` + `data/chords.txt` | `lib/fretboard/database.rb` | model | no |
-| 15 | `src/chord_ops.rs` | `lib/fretboard/chord_ops.rb` | logic | no |
-| 16 | `src/chord_name_algorithm.rs` | `lib/fretboard/chord_name_algorithm.rb` | logic | no |
-| 17 | `src/widgets/window.rs` (`Bookmark`, save/load JSON) | `lib/fretboard/bookmarks.rb` | model / persistence | no |
-| 18 | `data/dev.bragefuglseth.Fretboard.gschema.xml` | `lib/fretboard/settings.rb` | settings | no |
-| 19 | `data/resources/style.css` | `lib/fretboard/style.rb` (+ `data/style.css`) | stylesheet | no |
-| 20 | `data/resources/assets/*.svg`, `data/resources/icons/**` | `data/assets/`, `data/icons/` | resources | no |
-| 21 | `po/*.po` (37 langs, 48 msgids) | `po/` + gettext wiring | translations | no |
+| 1 | `src/main.rs` | `lib/fretboard.rb` + `exe/fretboard` | entry point | yes |
+| 2 | `src/application.rs` | `lib/fretboard/application.rb` | application / actions / accels | yes |
+| 3 | `src/widgets/window.blp` + `window.rs` | `lib/fretboard/window.rb` | main window (3 nav pages) | yes |
+| 4 | `src/widgets/window.blp` (`menu primary_menu`) | `lib/fretboard/primary_menu.rb` | menu model | yes |
+| 5 | `data/resources/shortcuts-dialog.ui` | `lib/fretboard/shortcuts_dialog.rb` | dialog | yes |
+| 6 | `src/widgets/window.rs` (`show_about_dialog`) + `data/…metainfo.xml.in.in` | `lib/fretboard/about_dialog.rb` | dialog | yes |
+| 7 | `src/widgets/chord_diagram.blp` + `chord_diagram.rs` | `lib/fretboard/chord_diagram.rb` | composite widget | yes |
+| 8 | `src/widgets/chord_diagram_toggle.blp` + `.rs` | `lib/fretboard/chord_diagram_toggle.rb` | widget (fret cell) | yes |
+| 9 | `src/widgets/chord_diagram_top_toggle.blp` + `.rs` | `lib/fretboard/chord_diagram_top_toggle.rb` | widget (string head) | yes |
+| 10 | `src/widgets/barre_spin.blp` + `.rs` | `lib/fretboard/barre_spin.rb` | widget (spinner) | yes |
+| 11 | `src/widgets/chord_name_entry.blp` + `.rs` | `lib/fretboard/chord_name_entry.rb` | widget (entry) | yes |
+| 12 | `src/widgets/chord_preview.blp` + `.rs` | `lib/fretboard/chord_preview.rb` | widget (grid cell) | yes |
+| 13 | `src/widgets/window.rs` (`more_variants`, `show_bookmarks`) | `lib/fretboard/chord_preview_button.rb` | widget built in a loop | yes |
+| 14 | `src/database.rs` + `data/chords.txt` | `lib/fretboard/database.rb` | model | yes |
+| 15 | `src/chord_ops.rs` | `lib/fretboard/chord_ops.rb` | logic | yes |
+| 16 | `src/chord_name_algorithm.rs` | `lib/fretboard/chord_name_algorithm.rb` | logic | yes |
+| 17 | `src/widgets/window.rs` (`Bookmark`, save/load JSON) | `lib/fretboard/bookmarks.rb` | model / persistence | yes |
+| 18 | `data/dev.bragefuglseth.Fretboard.gschema.xml` | `lib/fretboard/settings.rb` | settings | yes |
+| 19 | `data/resources/style.css` | `lib/fretboard/style.rb` (+ `data/style.css`) | stylesheet | yes |
+| 20 | `data/resources/assets/*.svg`, `data/resources/icons/**` | `data/assets/`, `data/icons/` | resources | yes |
+| 21 | `po/*.po` (37 langs, 48 msgids) | `po/` + gettext wiring | translations | **no** |
 
 ---
 
@@ -372,3 +376,33 @@ format strings.
 6. **File layout deviates from the pilot.** gnome-contacts-rb uses flat
    `lib/*.rb`; this fork's gem layout already nests under `lib/fretboard/`, and
    the table above follows the fork.
+
+---
+
+## Status refresh
+
+Re-checked against `lib/` on `ruby` after the port commit. Resolutions to the
+blockers above:
+
+1. **`app.shortcuts`** — settled: `application.rb` installs it explicitly as a
+   `Gio::SimpleAction` and presents `ShortcutsDialog` on the window.
+2. **GResource** — settled: no bundle; `style.rb`, `chord_diagram.rb` and
+   `chord_preview.rb` load from the vendored `data/` tree, and the icon
+   directory is registered with the icon theme.
+3. **`Adwaita::ApplicationWindow`** — settled per the `ruby-gtk` skill:
+   `application.rb` uses `Gtk::Application` plus `Adwaita.init` on `startup`,
+   and the window wraps a `Gtk::ApplicationWindow`.
+4. **Rust-only mechanisms** — substituted: `win.set-handedness` is a plain
+   `Gio::SimpleAction` with a string parameter rather than a property action;
+   `bind_property`/`transform_to` became explicit refresh methods; the three
+   custom GObject signals became constructor-injected callbacks.
+5. **`rayon`** — dropped; `database.rb` does a linear scan.
+6. **Layout** — the nested `lib/fretboard/` layout is what was built.
+
+**The one remaining parity gap is component 21.** There is no `po/`
+directory in the fork and no `gettext` binding anywhere in `lib/`; all 48
+upstream msgids are present only as English Ruby literals, so the port is
+monolingual where upstream ships 37 languages. Note the two upstream wrinkles
+a translation step has to carry: the `shortcut dialog` msgctxt on every
+`shortcuts_dialog.rb` string, and the `{}` format placeholders in the top
+toggle's tooltips and accessible labels (`"Open ({})"`, `"String {}, Muted"`).
