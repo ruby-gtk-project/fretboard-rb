@@ -1,0 +1,302 @@
+---
+version: 1
+tree:
+  role: port
+  path: "."
+  ref: ruby
+  sha: baa706b
+  scanned: '2026-11-03'
+domain: fretboard
+domain_source: passed with --domain
+totals:
+  messages: 39
+  occurrences: 44
+  reused: 4
+  plural: 0
+  with_context: 10
+  unresolved: 12
+languages:
+  count: 37
+  translated_strings: 1638
+  untranslated_strings: 54
+  fuzzy_strings: 1
+  list:
+  - ar
+  - az
+  - be
+  - bg
+  - ca
+  - cs
+  - de
+  - el
+  - en_GB
+  - eo
+  - es
+  - eu
+  - fi
+  - fr
+  - he
+  - hi
+  - hu
+  - ia
+  - id
+  - it
+  - ja
+  - ka
+  - kk
+  - kw
+  - nb
+  - nl
+  - pt
+  - pt_BR
+  - ru
+  - sl
+  - sr
+  - sv
+  - te
+  - tr
+  - uk
+  - uz
+  - zh_CN
+  linguas_matches_files: true
+unresolved:
+- marker: _(DESCRIPTION)         dialog.developers = ["#{DEVELOPER} http
+  site: lib/fretboard/about_dialog.rb:54
+- marker: _(TOOLTIPS.fetch(@state)), @note_name)        def icon(state)
+  site: lib/fretboard/chord_diagram_top_toggle.rb:178
+- marker: gettext(msgid) = messages.fetch(msgid, msgid)        def pgettext(co
+  site: lib/fretboard/i18n.rb:151
+- marker: pgettext(context, msgid)         messages.fetch("#{context}#{CONTEXT_
+  site: lib/fretboard/i18n.rb:153
+- marker: _(msgid) = I18n.catalogue.gettext(msgid)
+  site: lib/fretboard/i18n.rb:46
+- marker: p_(context, msgid) = I18n.catalogue.pgettext(context, msgid)
+  site: lib/fretboard/i18n.rb:51
+- marker: N_(msgid) = msgid
+  site: lib/fretboard/i18n.rb:56
+- marker: NC_(_context, msgid) = msgid
+  site: lib/fretboard/i18n.rb:61
+- marker: _(label), target))         end       end     end      def chor
+  site: lib/fretboard/primary_menu.rb:32
+- marker: p_(CONTEXT, definition[:title])           end            defini
+  site: lib/fretboard/shortcuts_dialog.rb:71
+- marker: p_(CONTEXT, title), options))           end         end       e
+  site: lib/fretboard/shortcuts_dialog.rb:75
+- marker: _(NO_VARIANTS_DESCRIPTION),           "<a href=\"#{ISSUE_URL}\
+  site: lib/fretboard/window.rb:233
+messages:
+- id: Bookmark
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/window.rb:480
+- id: Bookmarks
+  kind: single
+  uses: 2
+  sites:
+  - lib/fretboard/window.rb:102
+  - lib/fretboard/window.rb:459
+- id: Chord Name
+  kind: single
+  uses: 2
+  sites:
+  - lib/fretboard/chord_name_entry.rb:88
+  - lib/fretboard/chord_name_entry.rb:89
+- id: Chord not found
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/window.rb:181
+- id: Confirm
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/chord_name_entry.rb:96
+- id: Donate
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/about_dialog.rb:34
+- id: Enharmonic Equivalent
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/chord_name_entry.rb:102
+- id: Fretboard
+  kind: single
+  uses: 3
+  sites:
+  - lib/fretboard/about_dialog.rb:50
+  - lib/fretboard/window.rb:79
+  - lib/fretboard/window.rb:90
+- id: Guitar Type
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/primary_menu.rb:23
+- id: How was that chord played, again? Fretboard lets you find guitar chords by typing
+    their names or plotting them on an interactive guitar neck. When you have identified
+    a chord, you can experiment with changing it, see more ways to play it, or bookmark
+    it to save it for later. No matter if you are a beginner or an advanced guitarist,
+    you can use Fretboard to practice, learn, and master your favorite songs!
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/about_dialog.rb:22
+- id: Keypunch
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/about_dialog.rb:40
+- id: Left-handed
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/primary_menu.rb:18
+- id: Main Menu
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/window.rb:124
+- id: Move Down
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/barre_spin.rb:65
+- id: Move Up
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/barre_spin.rb:61
+- id: Muted ({})
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/chord_diagram_top_toggle.rb:35
+- id: No Bookmarks
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/window.rb:456
+- id: No Variants
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/window.rb:231
+- id: Not Open ({})
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/chord_diagram_top_toggle.rb:29
+- id: Open ({})
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/chord_diagram_top_toggle.rb:32
+- id: Practice your typing skills
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/about_dialog.rb:43
+- id: Remove Bookmark
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/window.rb:477
+- id: Right-handed
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/primary_menu.rb:17
+- id: There are no chords with this name in Fretboard’s built-in chord set. If you
+    think there should be, {}reach out{}.
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/window.rb:39
+- id: View _Variants
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/window.rb:212
+- id: _About Fretboard
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/primary_menu.rb:47
+- id: _Empty Chord
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/primary_menu.rb:40
+- id: _Keyboard Shortcuts
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/primary_menu.rb:46
+- id: translator-credits
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/about_dialog.rb:60
+- ctxt: shortcut dialog
+  id: Bookmark Chord
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/shortcuts_dialog.rb:35
+- ctxt: shortcut dialog
+  id: Close Window
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/shortcuts_dialog.rb:43
+- ctxt: shortcut dialog
+  id: Empty Chord
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/shortcuts_dialog.rb:27
+- ctxt: shortcut dialog
+  id: Focus Entry
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/shortcuts_dialog.rb:29
+- ctxt: shortcut dialog
+  id: General
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/shortcuts_dialog.rb:23
+- ctxt: shortcut dialog
+  id: Keyboard Shortcuts
+  kind: single
+  uses: 2
+  sites:
+  - lib/fretboard/shortcuts_dialog.rb:42
+  - lib/fretboard/shortcuts_dialog.rb:62
+- ctxt: shortcut dialog
+  id: Open Menu
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/shortcuts_dialog.rb:25
+- ctxt: shortcut dialog
+  id: Quit
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/shortcuts_dialog.rb:44
+- ctxt: shortcut dialog
+  id: View Bookmarks
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/shortcuts_dialog.rb:36
+- ctxt: shortcut dialog
+  id: View Chord Variants
+  kind: single
+  uses: 1
+  sites:
+  - lib/fretboard/shortcuts_dialog.rb:28

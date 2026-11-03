@@ -1,0 +1,333 @@
+# Dutch translation for Fretboard.
+# Copyright (C) 2023 Fretboard'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the fretboard package.
+# Gert-dev, 2023.
+#
+# Gert-dev <qnyasgjhapqyuhoibr@kiabws.com>, 2023.
+# Philip Goto <philip.goto@gmail.com>, 2023, 2024.
+# Gert-dev <Gert-dev@users.noreply.hosted.weblate.org>, 2023.
+# Dick Groskamp <dikgro@yahoo.co.uk>, 2025.
+# Nathan Follens <nfollens@gnome.org>, 2025.
+msgid ""
+msgstr ""
+"Project-Id-Version: fretboard\n"
+"Report-Msgid-Bugs-To: https://github.com/bragefuglseth/fretboard/issues\n"
+"POT-Creation-Date: 2025-07-20 15:26+0000\n"
+"PO-Revision-Date: 2025-09-13 22:19+0200\n"
+"Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
+"Language-Team: GNOME-NL https://matrix.to/#/#nl:gnome.org\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 3.6\n"
+
+#: data/dev.bragefuglseth.Fretboard.desktop.in.in:2
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:7
+msgid "Fretboard"
+msgstr "Fretboard"
+
+#: data/dev.bragefuglseth.Fretboard.desktop.in.in:3
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:8
+msgid "Look up guitar chords"
+msgstr "Zoek gitaar­akkoorden op"
+
+#: data/dev.bragefuglseth.Fretboard.desktop.in.in:9
+msgid "guitar;chords"
+msgstr "guitar;chords;gitaar;akkoorden"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:13
+msgid ""
+"How was that chord played, again? Fretboard lets you find guitar chords by "
+"typing their names or plotting them on an interactive guitar neck. When you "
+"have identified a chord, you can experiment with changing it, see more ways "
+"to play it, or bookmark it to save it for later. No matter if you are a "
+"beginner or an advanced guitarist, you can use Fretboard to practice, learn, "
+"and master your favorite songs!"
+msgstr ""
+"Hoe werd dat akkoord ook alweer gespeeld? Fretboard laat u gitaarakkoorden "
+"zoeken door hun namen te typen of ze op een interactieve gitaarhals te "
+"plaatsen. Zodra u een akkoord hebt geïdentificeerd, kunt u ermee "
+"experimenteren door het te wijzigen,andere manieren bekijken om het te "
+"spelen, of er een bladwijzer voor maken om het voor later te bewaren. Het "
+"maakt niet uit of u nu een beginnende of gevorderde gitarist bent, Fretboard "
+"helpt u om te oefenen, te leren en uw favoriete nummers onder de knie te "
+"krijgen!"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:21
+msgid ""
+"Fretboard is proudly part of GNOME Circle, an initiative that champions the "
+"great software that is available for the GNOME platform. For more "
+"information, visit the GNOME Circle website."
+msgstr ""
+"Fretboard maakt met trots deel uit van GNOME Circle, een initiatief dat de "
+"fantastische software voor het GNOME-platform promoot. Bezoek de website van "
+"GNOME Circle voor meer informatie."
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:27
+msgid "Displaying a chord"
+msgstr "Weer­gave van een akkoord"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:31
+msgid "Displaying a barre chord"
+msgstr "Weer­gave van een barré-akkoord"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:35
+msgid "Showing variants of a chord"
+msgstr "Weer­gave van akkoord­varianten"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:39
+msgid "The bookmarks page"
+msgstr "De bladwijzer­pagina"
+
+#. translators: "right-handed" and "left-handed" are enum values, and should not be translated
+#: data/dev.bragefuglseth.Fretboard.gschema.xml:16
+msgid "Can be either \"right-handed\" or \"left-handed\"."
+msgstr ""
+"Kan ofwel ‘right-handed’ (rechts­handig) of ‘left-handed’ (links­handig) zijn."
+
+#: data/resources/gtk/help-overlay.ui:12
+msgid "General"
+msgstr "Algemeen"
+
+#: data/resources/gtk/help-overlay.ui:15
+msgid "Empty Chord"
+msgstr "Leeg akkoord"
+
+#: data/resources/gtk/help-overlay.ui:21
+msgid "Bookmark Chord"
+msgstr "Blad­wijzer toe­voegen voor akkoord"
+
+#: data/resources/gtk/help-overlay.ui:27
+msgid "View Bookmarks"
+msgstr "Blad­wijzers tonen"
+
+#: data/resources/gtk/help-overlay.ui:33
+msgid "View Chord Variants"
+msgstr "Akkoord­varianten tonen"
+
+#: data/resources/gtk/help-overlay.ui:39
+msgid "Focus Entry"
+msgstr "Invoer focussen"
+
+#: data/resources/gtk/help-overlay.ui:45
+msgid "View Shortcuts"
+msgstr "Snel­toetsen tonen"
+
+#: data/resources/gtk/help-overlay.ui:51
+msgid "Close Window"
+msgstr "Venster sluiten"
+
+#: data/resources/gtk/help-overlay.ui:57
+msgid "Quit"
+msgstr "Afsluiten"
+
+#: src/widgets/barre_spin.blp:9
+msgid "Move Up"
+msgstr "Omhoog gaan"
+
+#: src/widgets/barre_spin.blp:28
+msgid "Move Down"
+msgstr "Omlaag gaan"
+
+#: src/widgets/chord_diagram_top_toggle.rs:168
+msgid "Not Open ({})"
+msgstr "Niet geopend ({})"
+
+#. translators: The text between the `{}` markers is the note of the muted string.
+#: src/widgets/chord_diagram_top_toggle.rs:171
+msgid "Muted ({})"
+msgstr "Gedempt ({})"
+
+#. translators: The text between the `{}` markers is the note of the open string. "Open" is an adjective, not a verb.
+#: src/widgets/chord_diagram_top_toggle.rs:175
+msgid "Open ({})"
+msgstr "Geopend ({})"
+
+#. translators: keep this short! use only 'chord' or 'name' instead of both if necessary.
+#: src/widgets/chord_name_entry.blp:9 src/widgets/chord_name_entry.blp:12
+msgid "Chord Name"
+msgstr "Naam akkoord"
+
+#: src/widgets/chord_name_entry.blp:34
+msgid "Confirm"
+msgstr "Bevestigen"
+
+#: src/widgets/chord_name_entry.blp:49
+msgid "Enharmonic Equivalent"
+msgstr "Enharmonische equivalent"
+
+#: src/widgets/window.blp:27
+msgid "Main Menu"
+msgstr "Hoofdmenu"
+
+#: src/widgets/window.blp:78
+msgid "Chord not found"
+msgstr "Akkoord niet terug­gevonden"
+
+#: src/widgets/window.blp:110
+msgid "View _Variants"
+msgstr "_Varianten bekijken"
+
+#: src/widgets/window.blp:144
+msgid "No Variants"
+msgstr "Geen varianten"
+
+#: src/widgets/window.blp:178 src/widgets/window.rs:374
+msgid "Bookmarks"
+msgstr "Blad­wijzers"
+
+#: src/widgets/window.blp:213
+msgid "Guitar Type"
+msgstr "Gitaar­type"
+
+#: src/widgets/window.blp:216
+msgid "Right-handed"
+msgstr "Rechts­handig"
+
+#: src/widgets/window.blp:222
+msgid "Left-handed"
+msgstr "Links­handig"
+
+#. translators: "Empty" is a verb
+#: src/widgets/window.blp:231
+msgid "_Empty Chord"
+msgstr "_Leeg akkoord"
+
+#: src/widgets/window.blp:238
+msgid "_Keyboard Shortcuts"
+msgstr "Snel_toetsen"
+
+#: src/widgets/window.blp:243
+msgid "_About Fretboard"
+msgstr "_Over Fretboard"
+
+#: src/widgets/window.rs:297
+msgid "Remove Bookmark"
+msgstr "Verwijderen uit bladwijzers"
+
+#: src/widgets/window.rs:299
+msgid "Bookmark"
+msgstr "Toevoegen aan bladwijzers"
+
+#. translators: The text between the `{}` markers becomes a link to the app's issue tracker. Include both of the markers.
+#: src/widgets/window.rs:310
+msgid ""
+"There are no chords with this name in Fretboard’s built-in chord set. If you "
+"think there should be, {}reach out{}."
+msgstr ""
+"Er staan geen akkoorden met deze naam in de ingebouwde akkoordenset van "
+"Fretboard. Als u denkt dat dit wel het geval zou moeten zijn, {}neem dan "
+"contact met ons op{}."
+
+#: src/widgets/window.rs:372
+msgid "No Bookmarks"
+msgstr "Geen blad­wijzers"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: src/widgets/window.rs:693
+msgid "translator-credits"
+msgstr ""
+"Philip Goto https://philipgoto.nl/\n"
+"Gert-dev\n"
+"Dick Groskamp <dikgro@yahoo.co.uk>\n"
+"Nathan Follens <nfollens@gnome.org>\n"
+"Meer info over GNOME-NL https://nl.gnome.org"
+
+#. Translators: Metainfo for the app Keypunch. <https://github.com/bragefuglseth/keypunch>
+#: src/widgets/window.rs:698
+msgid "Keypunch"
+msgstr "Keypunch"
+
+#. Translators: Metainfo for the app Keypunch. <https://github.com/bragefuglseth/keypunch>
+#: src/widgets/window.rs:700
+msgid "Practice your typing skills"
+msgstr "Oefen uw typvaardigheden"
+
+#~ msgid "Brage Fuglseth"
+#~ msgstr "Brage Fuglseth"
+
+#~ msgid "guitar"
+#~ msgstr "gitaar"
+
+#~ msgid "chords"
+#~ msgstr "akkoorden"
+
+#~ msgid ""
+#~ "GNOME 45 is finally here! To celebrate, Fretboard has gained the "
+#~ "following improvements:"
+#~ msgstr ""
+#~ "GNOME 45 is eindelijk hier! Om dit te vieren, heeft Fretboard de volgende "
+#~ "verbeteringen meegekregen:"
+
+#~ msgid "Refined visuals taking advantage of the latest platform features"
+#~ msgstr ""
+#~ "Verfijnde visuele weergave die de laatste platform-verbeteringen optimaal "
+#~ "gebruikt"
+
+#~ msgid "Keyboard shortcuts for common actions"
+#~ msgstr "Sneltoetsen voor veelvoorkomende acties"
+
+#~ msgid ""
+#~ "Italian, Russian, and Dutch translations, making Fretboard available in a "
+#~ "total of 4 different languages"
+#~ msgstr ""
+#~ "Italiaanse, Russische, en Nederlandse vertalingen, waardoor Fretboard nu "
+#~ "in vier verschillende talen beschikbaar is"
+
+#~ msgid ""
+#~ "If you would like to come with suggestions, report bugs, translate the "
+#~ "app, or contribute otherwise, feel free to reach out!"
+#~ msgstr ""
+#~ "Als je suggesties hebt, bugs wil rapporteren, de applicatie wil vertalen, "
+#~ "of op een andere manier wil bijdragen, laat dan iets van je horen!"
+
+#~ msgid ""
+#~ "This major release of Fretboard brings a bunch of exciting improvements:"
+#~ msgstr ""
+#~ "Deze grote vrijgave van Fretboard brengt veel opwindende verbeteringen:"
+
+#~ msgid ""
+#~ "View different ways to play the same chord, to find the one that suits "
+#~ "your situation the best"
+#~ msgstr ""
+#~ "Bekijk verschillende manieren om hetzelfde akkoord te spelen en diegene "
+#~ "te vinden die het beste past in jouw situatie"
+
+#~ msgid "Bookmark chords to save them for a later practice session or gig"
+#~ msgstr ""
+#~ "Voeg bladwijzers toe aan akkoorden om ze op te slaan voor een oefensessie "
+#~ "of optreden op een later moment"
+
+#~ msgid ""
+#~ "An additional fret in the chord diagram, to help you practice those "
+#~ "really tricky positionings"
+#~ msgstr ""
+#~ "Een bijkomende fret in het akkoordendiagram om je te helpen oefenen op "
+#~ "die moeilijke vingerplaatsingen"
+
+#~ msgid ""
+#~ "Hover over positions in the chord diagram to see their respective note "
+#~ "names"
+#~ msgstr ""
+#~ "Beweeg met je muis over plaatsen in het akkoordendiagram om de namen van "
+#~ "de respectievelijke noten te zien"
+
+#~ msgid "Smarter and more precise chord detection"
+#~ msgstr "Slimmere en meer precieze akkoordendetectie"
+
+#~ msgid "Initial release."
+#~ msgstr "Eerste vrijgave."
+
+#~ msgid "Window width"
+#~ msgstr "Vensterbreedte"
+
+#~ msgid "Window height"
+#~ msgstr "Vensterhoogte"
+
+#~ msgid "Window maximized state"
+#~ msgstr "Maximalisatiestatus venster"
+
+#~ msgid "Go Back"
+#~ msgstr "Terug"

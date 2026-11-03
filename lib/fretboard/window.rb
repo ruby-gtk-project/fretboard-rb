@@ -9,6 +9,7 @@ require_relative "chord_name_entry"
 require_relative "chord_ops"
 require_relative "chord_preview_button"
 require_relative "database"
+require_relative "i18n"
 require_relative "primary_menu"
 require_relative "settings"
 
@@ -21,6 +22,8 @@ module Fretboard
   # tags; upstream's GSettings-backed "handedness" property is backed by this
   # port's JSON settings file instead.
   class Window
+    include I18n
+
     EMPTY_CHORD = [nil, nil, nil, nil, nil, nil].freeze
 
     HANDEDNESS = {
@@ -28,10 +31,17 @@ module Fretboard
       "left-handed"  => :left_handed,
     }.freeze
 
-    NO_VARIANTS_DESCRIPTION = "There are no chords with this name in Fretboard’s built-in " \
-                              "chord set. If you think there should be, " \
-                              "<a href=\"https://github.com/bragefuglseth/fretboard/issues\">" \
-                              "reach out</a>."
+    # The two `{}` markers are where the link to the issue tracker opens and
+    # closes; upstream fills them with the <a> tags through i18n_fmt!, so that a
+    # translator moves the link rather than the markup.
+    # translators: The text between the `{}` markers becomes a link to the
+    # app's issue tracker. Include both of the markers.
+    NO_VARIANTS_DESCRIPTION = N_(
+      "There are no chords with this name in Fretboard’s built-in chord set. " \
+      "If you think there should be, {}reach out{}.",
+    )
+
+    ISSUE_URL = "https://github.com/bragefuglseth/fretboard/issues"
 
     def initialize(app)
       @app = app
@@ -66,7 +76,7 @@ module Fretboard
 
     def window
       @window ||= Adwaita::ApplicationWindow.new(@app).tap do |win|
-        win.title = "Fretboard"
+        win.title = _("Fretboard")
         win.icon_name = APP_ID
         win.width_request = 360
         win.height_request = 294
@@ -77,7 +87,7 @@ module Fretboard
     def navigation_stack = @navigation_stack ||= Adwaita::NavigationView.new
 
     def chord_view_page
-      @chord_view_page ||= Adwaita::NavigationPage.new(chord_toolbar, "Fretboard").tap do |page|
+      @chord_view_page ||= Adwaita::NavigationPage.new(chord_toolbar, _("Fretboard")).tap do |page|
         page.tag = "chord-view"
       end
     end
@@ -89,7 +99,7 @@ module Fretboard
     end
 
     def bookmarks_page
-      @bookmarks_page ||= Adwaita::NavigationPage.new(bookmarks_toolbar, "Bookmarks").tap do |page|
+      @bookmarks_page ||= Adwaita::NavigationPage.new(bookmarks_toolbar, _("Bookmarks")).tap do |page|
         page.tag = "bookmarks"
       end
     end
@@ -111,7 +121,7 @@ module Fretboard
     def menu_button
       @menu_button ||= Gtk::MenuButton.new.tap do |button|
         button.icon_name = "open-menu-symbolic"
-        button.tooltip_text = "Main Menu"
+        button.tooltip_text = _("Main Menu")
         button.primary = true
       end
     end
@@ -168,7 +178,7 @@ module Fretboard
     end
 
     def feedback_label
-      @feedback_label ||= Gtk::Label.new("Chord not found").tap do |label|
+      @feedback_label ||= Gtk::Label.new(_("Chord not found")).tap do |label|
         label.wrap = true
         label.justify = :center
         label.add_css_class("dimmed")
@@ -199,7 +209,7 @@ module Fretboard
     def more_variants_box = @more_variants_box ||= Gtk::Box.new(:horizontal, 6)
 
     def more_variants_label
-      @more_variants_label ||= Gtk::Label.new("View _Variants").tap do |label|
+      @more_variants_label ||= Gtk::Label.new(_("View _Variants")).tap do |label|
         label.use_underline = true
       end
     end
@@ -218,10 +228,12 @@ module Fretboard
     def no_variants_page
       @no_variants_page ||= Adwaita::StatusPage.new.tap do |page|
         page.icon_name = "fretboard-symbolic"
-        page.title = "No Variants"
-        # translators: The text between the `<a>` tags becomes a link to the
-        # app's issue tracker. Include both of the tags.
-        page.description = NO_VARIANTS_DESCRIPTION
+        page.title = _("No Variants")
+        page.description = i18n_fmt(
+          _(NO_VARIANTS_DESCRIPTION),
+          "<a href=\"#{ISSUE_URL}\">",
+          "</a>",
+        )
       end
     end
 
@@ -441,10 +453,10 @@ module Fretboard
         bookmarks_button.tap do |button|
           if bookmarks.empty?
             button.action_name = nil
-            button.tooltip_text = "No Bookmarks"
+            button.tooltip_text = _("No Bookmarks")
           else
             button.action_name = "win.bookmarks"
-            button.tooltip_text = "Bookmarks"
+            button.tooltip_text = _("Bookmarks")
           end
 
           button.sensitive = !bookmarks.empty?
@@ -462,10 +474,10 @@ module Fretboard
       def refresh_star_appearance
         if star_toggle.active?
           star_toggle.icon_name = "star-large-symbolic"
-          star_toggle.tooltip_text = "Remove Bookmark"
+          star_toggle.tooltip_text = _("Remove Bookmark")
         else
           star_toggle.icon_name = "star-outline-rounded-symbolic"
-          star_toggle.tooltip_text = "Bookmark"
+          star_toggle.tooltip_text = _("Bookmark")
         end
       end
 

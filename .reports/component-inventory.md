@@ -40,7 +40,7 @@ established, rather than the flat `lib/*.rb` of the gnome-contacts-rb pilot.
 | 18 | `data/dev.bragefuglseth.Fretboard.gschema.xml` | `lib/fretboard/settings.rb` | settings | yes |
 | 19 | `data/resources/style.css` | `lib/fretboard/style.rb` (+ `data/style.css`) | stylesheet | yes |
 | 20 | `data/resources/assets/*.svg`, `data/resources/icons/**` | `data/assets/`, `data/icons/` | resources | yes |
-| 21 | `po/*.po` (37 langs, 48 msgids) | `po/` + gettext wiring | translations | **no** |
+| 21 | `po/*.po` (37 langs, 47 msgids) | `po/` + `lib/fretboard/i18n.rb` | translations | yes (39 of 47 msgids) |
 
 ---
 
@@ -399,10 +399,22 @@ blockers above:
 5. **`rayon`** — dropped; `database.rb` does a linear scan.
 6. **Layout** — the nested `lib/fretboard/` layout is what was built.
 
-**The one remaining parity gap is component 21.** There is no `po/`
-directory in the fork and no `gettext` binding anywhere in `lib/`; all 48
-upstream msgids are present only as English Ruby literals, so the port is
-monolingual where upstream ships 37 languages. Note the two upstream wrinkles
-a translation step has to carry: the `shortcut dialog` msgctxt on every
-`shortcuts_dialog.rb` string, and the `{}` format placeholders in the top
-toggle's tooltips and accessible labels (`"Open ({})"`, `"String {}, Muted"`).
+**Component 21 is now in place.** `po/` holds upstream's 37 catalogues and
+`LINGUAS` byte for byte, `po/POTFILES.in` points at the Ruby sources, and
+`lib/fretboard/i18n.rb` reads the matching `.po` at runtime and serves the
+`_`, `p_`, `N_`, `NC_` and `i18n_fmt` markers that every user-visible string in
+`lib/` now goes through. 39 of upstream's 47 msgids are emitted by the port,
+including the `shortcut dialog` msgctxt on all ten shortcuts-dialog strings and
+the `{}` placeholders in the top toggle's tooltips and the no-variants
+description. `TRANSLATION_PARITY.md` is the ledger, with the generated census
+documents in this directory.
+
+**The remaining gaps are the eight msgids that live in files the port does not
+ship** — the `.desktop.in.in`, the AppStream `.metainfo.xml.in.in` and the
+`.gschema.xml` (component 18 substituted JSON for the schema). They are
+component gaps before they are translation gaps: there is no Ruby call site to
+mark until those three files exist in `data/`. Upstream's three accessible-label
+msgids (`"String {}, Open"` and its siblings) are a separate matter: they reach
+no catalogue upstream either, and the port cannot set an accessible label at
+all, because `Gtk::Accessible#update_property` raises `NotImplementedError` for
+the enum array it takes.

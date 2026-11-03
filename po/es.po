@@ -1,0 +1,322 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the fretboard package.
+# Óscar Fernández Díaz <oscfdezdz@users.noreply.hosted.weblate.org>, 2023.
+# gallegonovato <fran-carro@hotmail.es>, 2023, 2024.
+# Sergio Varela <sergitroll9@gmail.com>, 2023.
+# Julián Villodre <jvillodrede@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: fretboard\n"
+"Report-Msgid-Bugs-To: https://github.com/bragefuglseth/fretboard/issues\n"
+"POT-Creation-Date: 2025-08-23 03:27+0000\n"
+"PO-Revision-Date: 2025-08-23 11:39+0200\n"
+"Last-Translator: Julián Villodre <jvillodrede@gmail.com>\n"
+"Language-Team: es_ES\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 48.0\n"
+
+#: data/dev.bragefuglseth.Fretboard.desktop.in.in:2
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:7
+msgid "Fretboard"
+msgstr "Fretboard"
+
+#: data/dev.bragefuglseth.Fretboard.desktop.in.in:3
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:8
+msgid "Look up guitar chords"
+msgstr "Consultar acordes de guitarra"
+
+#: data/dev.bragefuglseth.Fretboard.desktop.in.in:9
+msgid "guitar;chords"
+msgstr "guitar;chords;guitarra;acordes"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:13
+msgid ""
+"How was that chord played, again? Fretboard lets you find guitar chords by "
+"typing their names or plotting them on an interactive guitar neck. When you "
+"have identified a chord, you can experiment with changing it, see more ways "
+"to play it, or bookmark it to save it for later. No matter if you are a "
+"beginner or an advanced guitarist, you can use Fretboard to practice, learn, "
+"and master your favorite songs!"
+msgstr ""
+"¿Cómo se tocaba ese acorde? Fretboard le permite encontrar acordes de "
+"guitarra escribiendo sus nombres o trazándolos en un mástil de guitarra "
+"interactivo. Cuando haya identificado un acorde, puede experimentar "
+"cambiándolo, ver más formas de tocarlo o marcarlo para guardarlo más tarde. "
+"No importa si es un guitarrista principiante o avanzado, ¡puede usar "
+"Fretboard para practicar, aprender y dominar sus canciones favoritas!"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:21
+msgid ""
+"Fretboard is proudly part of GNOME Circle, an initiative that champions the "
+"great software that is available for the GNOME platform. For more "
+"information, visit the GNOME Circle website."
+msgstr ""
+"Fretboard es orgullosamente parte de GNOME Circle, una iniciativa que "
+"defiende el gran software disponible para la plataforma GNOME. Para más "
+"información, visite la página web de GNOME Circle."
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:27
+msgid "Displaying a chord"
+msgstr "Visualizar un acorde"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:31
+msgid "Displaying a barre chord"
+msgstr "Mostrar en la barra de acordes"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:35
+msgid "Showing variants of a chord"
+msgstr "Variantes de un acorde"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:39
+msgid "The bookmarks page"
+msgstr "Visualización de marcadores"
+
+#. translators: "right-handed" and "left-handed" are enum values, and should not be translated
+#: data/dev.bragefuglseth.Fretboard.gschema.xml:16
+msgid "Can be either \"right-handed\" or \"left-handed\"."
+msgstr "Puede ser «right-handed» o «left-handed»."
+
+#: data/resources/gtk/help-overlay.ui:12
+msgid "General"
+msgstr "General"
+
+#: data/resources/gtk/help-overlay.ui:15
+msgid "Empty Chord"
+msgstr "Acorde vacío"
+
+#: data/resources/gtk/help-overlay.ui:21
+msgid "Bookmark Chord"
+msgstr "Marcar acorde como favorito"
+
+#: data/resources/gtk/help-overlay.ui:27
+msgid "View Bookmarks"
+msgstr "Ver favoritos"
+
+#: data/resources/gtk/help-overlay.ui:33
+msgid "View Chord Variants"
+msgstr "Ver las variantes de los acordes"
+
+#: data/resources/gtk/help-overlay.ui:39
+msgid "Focus Entry"
+msgstr "Enfocar entrada"
+
+#: data/resources/gtk/help-overlay.ui:45
+msgid "View Shortcuts"
+msgstr "Ver métodos abreviados"
+
+#: data/resources/gtk/help-overlay.ui:51
+msgid "Close Window"
+msgstr "Cerrar la ventana"
+
+#: data/resources/gtk/help-overlay.ui:57
+msgid "Quit"
+msgstr "Salir"
+
+#: src/widgets/barre_spin.blp:9
+msgid "Move Up"
+msgstr "Mover arriba"
+
+#: src/widgets/barre_spin.blp:28
+msgid "Move Down"
+msgstr "Mover abajo"
+
+#: src/widgets/chord_diagram_top_toggle.rs:168
+msgid "Not Open ({})"
+msgstr "No abierto ({})"
+
+#. translators: The text between the `{}` markers is the note of the muted string.
+#: src/widgets/chord_diagram_top_toggle.rs:171
+msgid "Muted ({})"
+msgstr "Silenciado ({})"
+
+#. translators: The text between the `{}` markers is the note of the open string. "Open" is an adjective, not a verb.
+#: src/widgets/chord_diagram_top_toggle.rs:175
+msgid "Open ({})"
+msgstr "Abierto ({})"
+
+#. translators: keep this short! use only 'chord' or 'name' instead of both if necessary.
+#: src/widgets/chord_name_entry.blp:9 src/widgets/chord_name_entry.blp:12
+msgid "Chord Name"
+msgstr "Acorde"
+
+#: src/widgets/chord_name_entry.blp:34
+msgid "Confirm"
+msgstr "Confirmar"
+
+#: src/widgets/chord_name_entry.blp:49
+msgid "Enharmonic Equivalent"
+msgstr "Equivalente enarmonía"
+
+#: src/widgets/window.blp:27
+msgid "Main Menu"
+msgstr "Menú principal"
+
+#: src/widgets/window.blp:78
+msgid "Chord not found"
+msgstr "Acorde no encontrado"
+
+#: src/widgets/window.blp:110
+msgid "View _Variants"
+msgstr "Ver _variantes"
+
+#: src/widgets/window.blp:144
+msgid "No Variants"
+msgstr "Sin variantes"
+
+#: src/widgets/window.blp:178 src/widgets/window.rs:374
+msgid "Bookmarks"
+msgstr "Favoritos"
+
+#: src/widgets/window.blp:213
+msgid "Guitar Type"
+msgstr "Tipo de la guitarra"
+
+#: src/widgets/window.blp:216
+msgid "Right-handed"
+msgstr "Diestro"
+
+#: src/widgets/window.blp:222
+msgid "Left-handed"
+msgstr "Zurdo"
+
+#. translators: "Empty" is a verb
+#: src/widgets/window.blp:231
+msgid "_Empty Chord"
+msgstr "Acorde va_cío"
+
+#: src/widgets/window.blp:238
+msgid "_Keyboard Shortcuts"
+msgstr "Atajos del _teclado"
+
+#: src/widgets/window.blp:243
+msgid "_About Fretboard"
+msgstr "_Acerca de Fretboard"
+
+#: src/widgets/window.rs:297
+msgid "Remove Bookmark"
+msgstr "Quitar favorito"
+
+#: src/widgets/window.rs:299
+msgid "Bookmark"
+msgstr "Favorito"
+
+#. translators: The text between the `{}` markers becomes a link to the app's issue tracker. Include both of the markers.
+#: src/widgets/window.rs:310
+msgid ""
+"There are no chords with this name in Fretboard’s built-in chord set. If you "
+"think there should be, {}reach out{}."
+msgstr ""
+"No hay acordes con este nombre en el conjunto de acordes de Fretboard. Si "
+"cree que debería haberlos, {}póngase en contacto{}."
+
+#: src/widgets/window.rs:372
+msgid "No Bookmarks"
+msgstr "Sin favoritos"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: src/widgets/window.rs:693
+msgid "translator-credits"
+msgstr ""
+"Julián Villodre <jvillodrede@gmail.com>, 2025\n"
+"Óscar Fernández Díaz <oscfdezdz@tuta.io>"
+
+#. Translators: Metainfo for the app Keypunch. <https://github.com/bragefuglseth/keypunch>
+#: src/widgets/window.rs:698
+msgid "Keypunch"
+msgstr "Keypunch"
+
+#. Translators: Metainfo for the app Keypunch. <https://github.com/bragefuglseth/keypunch>
+#: src/widgets/window.rs:700
+msgid "Practice your typing skills"
+msgstr "Practique sus habilidades de mecanografía"
+
+#~ msgid "Brage Fuglseth"
+#~ msgstr "Brage Fuglseth"
+
+#~ msgid "guitar"
+#~ msgstr "guitarra"
+
+#~ msgid "chords"
+#~ msgstr "acordes"
+
+#~ msgid ""
+#~ "GNOME 45 is finally here! To celebrate, Fretboard has gained the "
+#~ "following improvements:"
+#~ msgstr ""
+#~ "¡GNOME 45 por fin está aquí! Para celebrarlo, Fretboard ha obtenido las "
+#~ "siguientes mejoras:"
+
+#~ msgid "Refined visuals taking advantage of the latest platform features"
+#~ msgstr ""
+#~ "Aspecto visual perfeccionado que aprovecha las últimas características de "
+#~ "la plataforma"
+
+#~ msgid "Keyboard shortcuts for common actions"
+#~ msgstr "Atajos del teclado para acciones comunes"
+
+#~ msgid ""
+#~ "Italian, Russian, and Dutch translations, making Fretboard available in a "
+#~ "total of 4 different languages"
+#~ msgstr ""
+#~ "Traducciones al italiano, ruso y neerlandés, lo que hace que Fretboard "
+#~ "esté disponible en un total de 4 idiomas diferentes"
+
+#~ msgid ""
+#~ "If you would like to come with suggestions, report bugs, translate the "
+#~ "app, or contribute otherwise, feel free to reach out!"
+#~ msgstr ""
+#~ "Si quiere aportar sugerencias, informar de errores, traducir la "
+#~ "aplicación o contribuir de cualquier otra forma, ¡no dude en ponerse en "
+#~ "contacto con nosotros!"
+
+#~ msgid ""
+#~ "This major release of Fretboard brings a bunch of exciting improvements:"
+#~ msgstr ""
+#~ "Esta nueva versión de Fretboard trae un montón de mejoras interesantes:"
+
+#~ msgid ""
+#~ "View different ways to play the same chord, to find the one that suits "
+#~ "your situation the best"
+#~ msgstr ""
+#~ "Vea diferentes formas de tocar el mismo acorde, para encontrar la que "
+#~ "mejor se adapte a su situación"
+
+#~ msgid "Bookmark chords to save them for a later practice session or gig"
+#~ msgstr ""
+#~ "Marque acordes para guardarlos para una sesión de práctica o un concierto "
+#~ "posterior"
+
+#~ msgid ""
+#~ "An additional fret in the chord diagram, to help you practice those "
+#~ "really tricky positionings"
+#~ msgstr ""
+#~ "Un traste adicional en el diagrama de acordes, para ayudarle a practicar "
+#~ "esas posiciones realmente complicadas"
+
+#~ msgid ""
+#~ "Hover over positions in the chord diagram to see their respective note "
+#~ "names"
+#~ msgstr ""
+#~ "Pase el ratón por encima de las posiciones en el diagrama de acordes para "
+#~ "ver sus respectivos nombres de nota"
+
+#~ msgid "Smarter and more precise chord detection"
+#~ msgstr "Detección de acordes más inteligente y precisa"
+
+#~ msgid "Initial release."
+#~ msgstr "Versión inicial."
+
+#~ msgid "Window width"
+#~ msgstr "Anchura de la ventana"
+
+#~ msgid "Window height"
+#~ msgstr "Altura de la ventana"
+
+#~ msgid "Window maximized state"
+#~ msgstr "Estado de ventana maximizada"

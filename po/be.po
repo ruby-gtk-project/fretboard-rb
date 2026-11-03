@@ -1,0 +1,272 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the fretboard package.
+# Yahor <k1llo2810@protonmail.com>, 2024.
+msgid ""
+msgstr ""
+"Project-Id-Version: fretboard\n"
+"Report-Msgid-Bugs-To: https://github.com/bragefuglseth/fretboard/issues\n"
+"POT-Creation-Date: 2026-07-18 22:44+0000\n"
+"PO-Revision-Date: 2026-07-20 19:16+0300\n"
+"Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
+"Language-Team: Belarusian <https://hosted.weblate.org/projects/fretboard/"
+"fretboard/be/>\n"
+"Language: be\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.9\n"
+
+#: data/dev.bragefuglseth.Fretboard.desktop.in.in:2
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:7
+#: src/widgets/window.blp:5 src/widgets/window.blp:13
+msgid "Fretboard"
+msgstr "Fretboard"
+
+#: data/dev.bragefuglseth.Fretboard.desktop.in.in:3
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:8
+msgid "Look up guitar chords"
+msgstr "Пошук гітарных акордаў"
+
+#: data/dev.bragefuglseth.Fretboard.desktop.in.in:9
+msgid "guitar;chords"
+msgstr "guitar;chords;гітара; акорды"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:13
+msgid ""
+"How was that chord played, again? Fretboard lets you find guitar chords by "
+"typing their names or plotting them on an interactive guitar neck. When you "
+"have identified a chord, you can experiment with changing it, see more ways "
+"to play it, or bookmark it to save it for later. No matter if you are a "
+"beginner or an advanced guitarist, you can use Fretboard to practice, learn, "
+"and master your favorite songs!"
+msgstr ""
+"Яшчэ раз, як быў сыграны гэты акорд? Fretboard дазваляе знаходзіць гітарныя "
+"акорды, уводзячы іх назвы або наносячы іх на інтэрактыўны грыф гітары. Калі "
+"вы вызначылі акорд, вы можаце паэксперыментаваць з яго змяненнем, убачыць "
+"больш спосабаў яго прайгравання або дадаць яго ў закладкі, каб захаваць на "
+"потым. Незалежна ад таго, пачатковец вы ці вопытны гітарыст, вы можаце "
+"выкарыстоўваць Fretboard, каб практыкавацца, вучыцца і асвоіць свае любімыя "
+"песні!"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:21
+msgid ""
+"Fretboard is proudly part of GNOME Circle, an initiative that champions the "
+"great software that is available for the GNOME platform. For more "
+"information, visit the GNOME Circle website."
+msgstr ""
+"Fretboard з гонарам з'яўляецца часткай GNOME Circle, ініцыятывы, якая "
+"падтрымлівае выдатнае праграмнае забеспячэнне, даступнае для платформы "
+"GNOME. Для атрымання дадатковай інфармацыі наведайце вэб-сайт GNOME Circle."
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:27
+msgid "Displaying a chord"
+msgstr "Адлюстраванне акорда"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:31
+msgid "Displaying a barre chord"
+msgstr "Адлюстраванне барэ-акорда"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:35
+msgid "Showing variants of a chord"
+msgstr "Паказ варыянтаў акорда"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:39
+msgid "The bookmarks page"
+msgstr "Старонка закладак"
+
+#. translators: "right-handed" and "left-handed" are enum values, and should not be translated
+#: data/dev.bragefuglseth.Fretboard.gschema.xml:16
+msgid "Can be either “right-handed” or “left-handed”."
+msgstr ""
+"Можа быць або значэнне «right-handed» (пад правую руку), або «left-handed» "
+"(пад левую руку)."
+
+#: data/resources/shortcuts-dialog.ui:6
+msgctxt "shortcut dialog"
+msgid "General"
+msgstr "Агульныя"
+
+#: data/resources/shortcuts-dialog.ui:9
+msgctxt "shortcut dialog"
+msgid "Open Menu"
+msgstr "Адкрыць меню"
+
+#. translators: "Empty" is a verb
+#: data/resources/shortcuts-dialog.ui:16
+msgctxt "shortcut dialog"
+msgid "Empty Chord"
+msgstr "Ачысціць акорд"
+
+#: data/resources/shortcuts-dialog.ui:22
+msgctxt "shortcut dialog"
+msgid "View Chord Variants"
+msgstr "Варыянты акорда"
+
+#: data/resources/shortcuts-dialog.ui:28
+msgctxt "shortcut dialog"
+msgid "Focus Entry"
+msgstr "Перанесці фокус на радок уводу"
+
+#: data/resources/shortcuts-dialog.ui:38
+msgctxt "shortcut dialog"
+msgid "Bookmark Chord"
+msgstr "Дадаць у закладкі"
+
+#: data/resources/shortcuts-dialog.ui:44
+msgctxt "shortcut dialog"
+msgid "View Bookmarks"
+msgstr "Закладкі"
+
+#: data/resources/shortcuts-dialog.ui:54
+msgctxt "shortcut dialog"
+msgid "Keyboard Shortcuts"
+msgstr "Спалучэнні клавіш"
+
+#: data/resources/shortcuts-dialog.ui:60
+msgctxt "shortcut dialog"
+msgid "Close Window"
+msgstr "Закрыць акно"
+
+#: data/resources/shortcuts-dialog.ui:66
+msgctxt "shortcut dialog"
+msgid "Quit"
+msgstr "Выйсці"
+
+#: src/widgets/barre_spin.blp:9
+msgid "Move Up"
+msgstr "Перайсці ўверх"
+
+#: src/widgets/barre_spin.blp:28
+msgid "Move Down"
+msgstr "Перайсці ўніз"
+
+#: src/widgets/chord_diagram_top_toggle.rs:168
+#, rust-format
+msgid "Not Open ({})"
+msgstr "Не адкрытая ({})"
+
+#. translators: The text between the `{}` markers is the note of the muted string.
+#: src/widgets/chord_diagram_top_toggle.rs:171
+#, rust-format
+msgid "Muted ({})"
+msgstr "Прыглушаная ({})"
+
+#. translators: The text between the `{}` markers is the note of the open string. "Open" is an adjective, not a verb.
+#: src/widgets/chord_diagram_top_toggle.rs:175
+#, rust-format
+msgid "Open ({})"
+msgstr "Адкрытая ({})"
+
+#. translators: keep this short! use only 'chord' or 'name' instead of both if necessary.
+#: src/widgets/chord_name_entry.blp:9 src/widgets/chord_name_entry.blp:12
+msgid "Chord Name"
+msgstr "Назва акорда"
+
+#: src/widgets/chord_name_entry.blp:34
+msgid "Confirm"
+msgstr "Пацвердзіць"
+
+#: src/widgets/chord_name_entry.blp:49
+msgid "Enharmonic Equivalent"
+msgstr "Энгарманічны эквівалент"
+
+#: src/widgets/window.blp:27
+msgid "Main Menu"
+msgstr "Галоўнае меню"
+
+#: src/widgets/window.blp:78
+msgid "Chord not found"
+msgstr "Акорд не знойдзены"
+
+#: src/widgets/window.blp:110
+msgid "View _Variants"
+msgstr "Праглядзець _варыянты"
+
+#: src/widgets/window.blp:144
+msgid "No Variants"
+msgstr "Без варыянтаў"
+
+#: src/widgets/window.blp:178 src/widgets/window.rs:374
+msgid "Bookmarks"
+msgstr "Закладкі"
+
+#: src/widgets/window.blp:213
+msgid "Guitar Type"
+msgstr "Тып гітары"
+
+#: src/widgets/window.blp:216
+msgid "Right-handed"
+msgstr "Праўша"
+
+#: src/widgets/window.blp:222
+msgid "Left-handed"
+msgstr "Ляўша"
+
+#. translators: "Empty" is a verb
+#: src/widgets/window.blp:231
+msgid "_Empty Chord"
+msgstr "_Ачысціць акорд"
+
+#: src/widgets/window.blp:238
+msgid "_Keyboard Shortcuts"
+msgstr "_Спалучэнні клавіш"
+
+#: src/widgets/window.blp:243
+msgid "_About Fretboard"
+msgstr "_Аб праграме"
+
+#: src/widgets/window.rs:297
+msgid "Remove Bookmark"
+msgstr "Выдаліць закладку"
+
+#: src/widgets/window.rs:299
+msgid "Bookmark"
+msgstr "Дадаць у закладкі"
+
+#. translators: The text between the `{}` markers becomes a link to the app's issue tracker. Include both of the markers.
+#: src/widgets/window.rs:310
+#, rust-format
+msgid ""
+"There are no chords with this name in Fretboard’s built-in chord set. If you "
+"think there should be, {}reach out{}."
+msgstr ""
+"Ва ўбудаваным наборы акордаў Fretboard няма акордаў з такой назвай. Калі вы "
+"лічыце, што гэта памылка, {}звярніцеся{}."
+
+#: src/widgets/window.rs:372
+msgid "No Bookmarks"
+msgstr "Няма закладак"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: src/widgets/window.rs:695
+msgid "translator-credits"
+msgstr "Yahor Haurylenka <k1llo2810@gmail.com> 2024"
+
+#: src/widgets/window.rs:697
+msgid "Donate"
+msgstr "Ахвяраваць"
+
+#. Translators: Metainfo for the app Keypunch. <https://github.com/bragefuglseth/keypunch>
+#: src/widgets/window.rs:702
+msgid "Keypunch"
+msgstr "Keypunch"
+
+#. Translators: Metainfo for the app Keypunch. <https://github.com/bragefuglseth/keypunch>
+#: src/widgets/window.rs:704
+msgid "Practice your typing skills"
+msgstr "Практыкуйце навыкі друку"
+
+#~ msgid "View Shortcuts"
+#~ msgstr "Праглядзець спалучэнні клавіш"
+
+#~ msgid "Brage Fuglseth"
+#~ msgstr "Brage Fuglseth"
+
+#~ msgid "guitar"
+#~ msgstr "гітара"
+
+#~ msgid "chords"
+#~ msgstr "акорды"

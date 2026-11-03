@@ -1,0 +1,624 @@
+---
+version: 1
+upstream:
+  role: upstream
+  path: "/tmp/claude-1001/-home-nathan-src-github-ruby-gtk-project/9e6adaef-98a4-4c7a-bedc-91433423f878/scratchpad/fretboard-census/up"
+  scanned: '2026-11-03'
+  domain: fretboard
+  messages: 43
+  occurrences: 50
+  reused: 5
+  plural: 0
+  with_context: 10
+  unresolved: 0
+port:
+  role: port
+  path: "."
+  ref: ruby
+  sha: baa706b
+  scanned: '2026-11-03'
+  domain: fretboard
+  messages: 39
+  occurrences: 44
+  reused: 4
+  plural: 0
+  with_context: 10
+  unresolved: 12
+summary:
+  ported: 35
+  gaps: 8
+  extra: 4
+  kind_mismatch: 0
+  uses_mismatch: 3
+  occurrences:
+    upstream: 50
+    port: 44
+  languages:
+    upstream: 37
+    port: 37
+  languages_missing: []
+  domain_matches: true
+  parity: false
+messages:
+- id: Bookmark
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.rs:300
+  port_sites:
+  - lib/fretboard/window.rb:480
+- id: Bookmarks
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 2
+    port: 2
+  upstream_sites:
+  - src/widgets/window.blp:178
+  - src/widgets/window.rs:375
+  port_sites:
+  - lib/fretboard/window.rb:102
+  - lib/fretboard/window.rb:459
+- id: Can be either “right-handed” or “left-handed”.
+  state: gap
+  kind:
+    upstream: single
+    port:
+  uses:
+    upstream: 1
+    port: 0
+  upstream_sites:
+  - data/dev.bragefuglseth.Fretboard.gschema.xml
+  text_owed: Can be either “right-handed” or “left-handed”.
+- id: Chord Name
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 2
+    port: 2
+  upstream_sites:
+  - src/widgets/chord_name_entry.blp:12
+  - src/widgets/chord_name_entry.blp:9
+  port_sites:
+  - lib/fretboard/chord_name_entry.rb:88
+  - lib/fretboard/chord_name_entry.rb:89
+- id: Chord not found
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.blp:78
+  port_sites:
+  - lib/fretboard/window.rb:181
+- id: Confirm
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/chord_name_entry.blp:34
+  port_sites:
+  - lib/fretboard/chord_name_entry.rb:96
+- id: Displaying a barre chord
+  state: gap
+  kind:
+    upstream: single
+    port:
+  uses:
+    upstream: 1
+    port: 0
+  upstream_sites:
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+  text_owed: Displaying a barre chord
+- id: Displaying a chord
+  state: gap
+  kind:
+    upstream: single
+    port:
+  uses:
+    upstream: 1
+    port: 0
+  upstream_sites:
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+  text_owed: Displaying a chord
+- id: Donate
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.rs:698
+  port_sites:
+  - lib/fretboard/about_dialog.rb:34
+- id: Enharmonic Equivalent
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 2
+    port: 1
+  uses_mismatch: true
+  upstream_sites:
+  - src/widgets/chord_name_entry.blp:49
+  - src/widgets/chord_name_entry.rs:183
+  port_sites:
+  - lib/fretboard/chord_name_entry.rb:102
+- id: Fretboard
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 4
+    port: 3
+  uses_mismatch: true
+  upstream_sites:
+  - data/dev.bragefuglseth.Fretboard.desktop.in.in:2
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+  - src/widgets/window.blp:13
+  - src/widgets/window.blp:5
+  port_sites:
+  - lib/fretboard/about_dialog.rb:50
+  - lib/fretboard/window.rb:79
+  - lib/fretboard/window.rb:90
+- id: Fretboard is proudly part of GNOME Circle, an initiative that champions the
+    great software that is available for the GNOME platform. For more information,
+    visit the GNOME Circle website.
+  state: gap
+  kind:
+    upstream: single
+    port:
+  uses:
+    upstream: 1
+    port: 0
+  upstream_sites:
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+  text_owed: Fretboard is proudly part of GNOME Circle, an initiative that champions
+    the great software that is available for the GNOME platform. For more information,
+    visit the GNOME Circle website.
+- id: Guitar Type
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.blp:213
+  port_sites:
+  - lib/fretboard/primary_menu.rb:23
+- id: How was that chord played, again? Fretboard lets you find guitar chords by typing
+    their names or plotting them on an interactive guitar neck. When you have identified
+    a chord, you can experiment with changing it, see more ways to play it, or bookmark
+    it to save it for later. No matter if you are a beginner or an advanced guitarist,
+    you can use Fretboard to practice, learn, and master your favorite songs!
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+  port_sites:
+  - lib/fretboard/about_dialog.rb:22
+- id: Keypunch
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.rs:703
+  port_sites:
+  - lib/fretboard/about_dialog.rb:40
+- id: Left-handed
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.blp:222
+  port_sites:
+  - lib/fretboard/primary_menu.rb:18
+- id: Look up guitar chords
+  state: gap
+  kind:
+    upstream: single
+    port:
+  uses:
+    upstream: 2
+    port: 0
+  upstream_sites:
+  - data/dev.bragefuglseth.Fretboard.desktop.in.in:3
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+  text_owed: Look up guitar chords
+- id: Main Menu
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.blp:27
+  port_sites:
+  - lib/fretboard/window.rb:124
+- id: Move Down
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/barre_spin.blp:28
+  port_sites:
+  - lib/fretboard/barre_spin.rb:65
+- id: Move Up
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/barre_spin.blp:9
+  port_sites:
+  - lib/fretboard/barre_spin.rb:61
+- id: Muted ({})
+  state: extra
+  kind:
+    upstream:
+    port: single
+  uses:
+    upstream: 0
+    port: 1
+  port_sites:
+  - lib/fretboard/chord_diagram_top_toggle.rb:35
+- id: No Bookmarks
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.rs:373
+  port_sites:
+  - lib/fretboard/window.rb:456
+- id: No Variants
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.blp:144
+  port_sites:
+  - lib/fretboard/window.rb:231
+- id: Not Open ({})
+  state: extra
+  kind:
+    upstream:
+    port: single
+  uses:
+    upstream: 0
+    port: 1
+  port_sites:
+  - lib/fretboard/chord_diagram_top_toggle.rb:29
+- id: Open ({})
+  state: extra
+  kind:
+    upstream:
+    port: single
+  uses:
+    upstream: 0
+    port: 1
+  port_sites:
+  - lib/fretboard/chord_diagram_top_toggle.rb:32
+- id: Practice your typing skills
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.rs:705
+  port_sites:
+  - lib/fretboard/about_dialog.rb:43
+- id: Remove Bookmark
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.rs:298
+  port_sites:
+  - lib/fretboard/window.rb:477
+- id: Right-handed
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.blp:216
+  port_sites:
+  - lib/fretboard/primary_menu.rb:17
+- id: Showing variants of a chord
+  state: gap
+  kind:
+    upstream: single
+    port:
+  uses:
+    upstream: 1
+    port: 0
+  upstream_sites:
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+  text_owed: Showing variants of a chord
+- id: The bookmarks page
+  state: gap
+  kind:
+    upstream: single
+    port:
+  uses:
+    upstream: 1
+    port: 0
+  upstream_sites:
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+  text_owed: The bookmarks page
+- id: There are no chords with this name in Fretboard’s built-in chord set. If you
+    think there should be, {}reach out{}.
+  state: extra
+  kind:
+    upstream:
+    port: single
+  uses:
+    upstream: 0
+    port: 1
+  port_sites:
+  - lib/fretboard/window.rb:39
+- id: View _Variants
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.blp:110
+  port_sites:
+  - lib/fretboard/window.rb:212
+- id: _About Fretboard
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.blp:243
+  port_sites:
+  - lib/fretboard/primary_menu.rb:47
+- id: _Empty Chord
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.blp:231
+  port_sites:
+  - lib/fretboard/primary_menu.rb:40
+- id: _Keyboard Shortcuts
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.blp:238
+  port_sites:
+  - lib/fretboard/primary_menu.rb:46
+- id: guitar;chords
+  state: gap
+  kind:
+    upstream: single
+    port:
+  uses:
+    upstream: 1
+    port: 0
+  upstream_sites:
+  - data/dev.bragefuglseth.Fretboard.desktop.in.in:9
+  text_owed: guitar;chords
+- id: translator-credits
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - src/widgets/window.rs:696
+  port_sites:
+  - lib/fretboard/about_dialog.rb:60
+- ctxt: shortcut dialog
+  id: Bookmark Chord
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - data/resources/shortcuts-dialog.ui:38
+  port_sites:
+  - lib/fretboard/shortcuts_dialog.rb:35
+- ctxt: shortcut dialog
+  id: Close Window
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - data/resources/shortcuts-dialog.ui:60
+  port_sites:
+  - lib/fretboard/shortcuts_dialog.rb:43
+- ctxt: shortcut dialog
+  id: Empty Chord
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - data/resources/shortcuts-dialog.ui:16
+  port_sites:
+  - lib/fretboard/shortcuts_dialog.rb:27
+- ctxt: shortcut dialog
+  id: Focus Entry
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - data/resources/shortcuts-dialog.ui:28
+  port_sites:
+  - lib/fretboard/shortcuts_dialog.rb:29
+- ctxt: shortcut dialog
+  id: General
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - data/resources/shortcuts-dialog.ui:6
+  port_sites:
+  - lib/fretboard/shortcuts_dialog.rb:23
+- ctxt: shortcut dialog
+  id: Keyboard Shortcuts
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 2
+  uses_mismatch: true
+  upstream_sites:
+  - data/resources/shortcuts-dialog.ui:54
+  port_sites:
+  - lib/fretboard/shortcuts_dialog.rb:42
+  - lib/fretboard/shortcuts_dialog.rb:62
+- ctxt: shortcut dialog
+  id: Open Menu
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - data/resources/shortcuts-dialog.ui:9
+  port_sites:
+  - lib/fretboard/shortcuts_dialog.rb:25
+- ctxt: shortcut dialog
+  id: Quit
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - data/resources/shortcuts-dialog.ui:66
+  port_sites:
+  - lib/fretboard/shortcuts_dialog.rb:44
+- ctxt: shortcut dialog
+  id: View Bookmarks
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - data/resources/shortcuts-dialog.ui:44
+  port_sites:
+  - lib/fretboard/shortcuts_dialog.rb:36
+- ctxt: shortcut dialog
+  id: View Chord Variants
+  state: ported
+  kind:
+    upstream: single
+    port: single
+  uses:
+    upstream: 1
+    port: 1
+  upstream_sites:
+  - data/resources/shortcuts-dialog.ui:22
+  port_sites:
+  - lib/fretboard/shortcuts_dialog.rb:28

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "adwaita"
+require_relative "i18n"
 
 module Fretboard
   # ShortcutsDialog lists the keyboard shortcuts.
@@ -10,30 +11,37 @@ module Fretboard
   # than accelerators, so the accelerators shown are the ones the application
   # binds to those actions.
   class ShortcutsDialog
+    include I18n
+
+    # Every string in upstream's .ui carries the "shortcut dialog" message
+    # context, so every one of them is looked up with p_ below. They are marked
+    # here and translated as each section and item is built.
+    CONTEXT = "shortcut dialog"
+
     SECTIONS = [
       {
-        title: "General",
+        title: NC_("shortcut dialog", "General"),
         items: [
-          ["Open Menu", accelerator: "F10"],
+          [NC_("shortcut dialog", "Open Menu"), accelerator: "F10"],
           # translators: "Empty" is a verb
-          ["Empty Chord", action: "win.empty-chord"],
-          ["View Chord Variants", action: "win.more-variants"],
-          ["Focus Entry", action: "win.focus-entry"],
+          [NC_("shortcut dialog", "Empty Chord"), action: "win.empty-chord"],
+          [NC_("shortcut dialog", "View Chord Variants"), action: "win.more-variants"],
+          [NC_("shortcut dialog", "Focus Entry"), action: "win.focus-entry"],
         ],
       },
       {
         title: nil,
         items: [
-          ["Bookmark Chord", action: "win.bookmark-chord"],
-          ["View Bookmarks", action: "win.bookmarks"],
+          [NC_("shortcut dialog", "Bookmark Chord"), action: "win.bookmark-chord"],
+          [NC_("shortcut dialog", "View Bookmarks"), action: "win.bookmarks"],
         ],
       },
       {
         title: nil,
         items: [
-          ["Keyboard Shortcuts", action: "app.shortcuts"],
-          ["Close Window", action: "window.close"],
-          ["Quit", action: "app.quit"],
+          [NC_("shortcut dialog", "Keyboard Shortcuts"), action: "app.shortcuts"],
+          [NC_("shortcut dialog", "Close Window"), action: "window.close"],
+          [NC_("shortcut dialog", "Quit"), action: "app.quit"],
         ],
       },
     ].freeze
@@ -48,7 +56,10 @@ module Fretboard
 
     def root
       @root ||= Adwaita::ShortcutsDialog.new.tap do |dialog|
-        dialog.title = "Keyboard Shortcuts"
+        # Upstream's .ui leaves the title to libadwaita, which translates its
+        # own default through its own catalogue. The port says it, so it says
+        # it with the same words as the item of that name.
+        dialog.title = p_("shortcut dialog", "Keyboard Shortcuts")
       end
     end
 
@@ -57,11 +68,11 @@ module Fretboard
       def section(definition)
         Adwaita::ShortcutsSection.new.tap do |section|
           unless definition[:title].nil?
-            section.title = definition[:title]
+            section.title = p_(CONTEXT, definition[:title])
           end
 
           definition[:items].each do |title, options|
-            section.add(item(title, options))
+            section.add(item(p_(CONTEXT, title), options))
           end
         end
       end

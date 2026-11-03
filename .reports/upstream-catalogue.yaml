@@ -1,0 +1,299 @@
+---
+version: 1
+tree:
+  role: upstream
+  path: "/tmp/claude-1001/-home-nathan-src-github-ruby-gtk-project/9e6adaef-98a4-4c7a-bedc-91433423f878/scratchpad/fretboard-census/up"
+  scanned: '2026-11-03'
+domain: fretboard
+domain_source: po/meson.build
+totals:
+  messages: 43
+  occurrences: 50
+  reused: 5
+  plural: 0
+  with_context: 10
+  unresolved: 0
+languages:
+  count: 37
+  translated_strings: 1638
+  untranslated_strings: 54
+  fuzzy_strings: 1
+  list:
+  - ar
+  - az
+  - be
+  - bg
+  - ca
+  - cs
+  - de
+  - el
+  - en_GB
+  - eo
+  - es
+  - eu
+  - fi
+  - fr
+  - he
+  - hi
+  - hu
+  - ia
+  - id
+  - it
+  - ja
+  - ka
+  - kk
+  - kw
+  - nb
+  - nl
+  - pt
+  - pt_BR
+  - ru
+  - sl
+  - sr
+  - sv
+  - te
+  - tr
+  - uk
+  - uz
+  - zh_CN
+  linguas_matches_files: true
+unresolved: []
+messages:
+- id: Bookmark
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.rs:300
+- id: Bookmarks
+  kind: single
+  uses: 2
+  sites:
+  - src/widgets/window.blp:178
+  - src/widgets/window.rs:375
+- id: Can be either “right-handed” or “left-handed”.
+  kind: single
+  uses: 1
+  sites:
+  - data/dev.bragefuglseth.Fretboard.gschema.xml
+- id: Chord Name
+  kind: single
+  uses: 2
+  sites:
+  - src/widgets/chord_name_entry.blp:12
+  - src/widgets/chord_name_entry.blp:9
+- id: Chord not found
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.blp:78
+- id: Confirm
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/chord_name_entry.blp:34
+- id: Displaying a barre chord
+  kind: single
+  uses: 1
+  sites:
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+- id: Displaying a chord
+  kind: single
+  uses: 1
+  sites:
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+- id: Donate
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.rs:698
+- id: Enharmonic Equivalent
+  kind: single
+  uses: 2
+  sites:
+  - src/widgets/chord_name_entry.blp:49
+  - src/widgets/chord_name_entry.rs:183
+- id: Fretboard
+  kind: single
+  uses: 4
+  sites:
+  - data/dev.bragefuglseth.Fretboard.desktop.in.in:2
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+  - src/widgets/window.blp:13
+  - src/widgets/window.blp:5
+- id: Fretboard is proudly part of GNOME Circle, an initiative that champions the
+    great software that is available for the GNOME platform. For more information,
+    visit the GNOME Circle website.
+  kind: single
+  uses: 1
+  sites:
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+- id: Guitar Type
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.blp:213
+- id: How was that chord played, again? Fretboard lets you find guitar chords by typing
+    their names or plotting them on an interactive guitar neck. When you have identified
+    a chord, you can experiment with changing it, see more ways to play it, or bookmark
+    it to save it for later. No matter if you are a beginner or an advanced guitarist,
+    you can use Fretboard to practice, learn, and master your favorite songs!
+  kind: single
+  uses: 1
+  sites:
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+- id: Keypunch
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.rs:703
+- id: Left-handed
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.blp:222
+- id: Look up guitar chords
+  kind: single
+  uses: 2
+  sites:
+  - data/dev.bragefuglseth.Fretboard.desktop.in.in:3
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+- id: Main Menu
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.blp:27
+- id: Move Down
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/barre_spin.blp:28
+- id: Move Up
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/barre_spin.blp:9
+- id: No Bookmarks
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.rs:373
+- id: No Variants
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.blp:144
+- id: Practice your typing skills
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.rs:705
+- id: Remove Bookmark
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.rs:298
+- id: Right-handed
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.blp:216
+- id: Showing variants of a chord
+  kind: single
+  uses: 1
+  sites:
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+- id: The bookmarks page
+  kind: single
+  uses: 1
+  sites:
+  - data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+- id: View _Variants
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.blp:110
+- id: _About Fretboard
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.blp:243
+- id: _Empty Chord
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.blp:231
+- id: _Keyboard Shortcuts
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.blp:238
+- id: guitar;chords
+  kind: single
+  uses: 1
+  sites:
+  - data/dev.bragefuglseth.Fretboard.desktop.in.in:9
+- id: translator-credits
+  kind: single
+  uses: 1
+  sites:
+  - src/widgets/window.rs:696
+- ctxt: shortcut dialog
+  id: Bookmark Chord
+  kind: single
+  uses: 1
+  sites:
+  - data/resources/shortcuts-dialog.ui:38
+- ctxt: shortcut dialog
+  id: Close Window
+  kind: single
+  uses: 1
+  sites:
+  - data/resources/shortcuts-dialog.ui:60
+- ctxt: shortcut dialog
+  id: Empty Chord
+  kind: single
+  uses: 1
+  sites:
+  - data/resources/shortcuts-dialog.ui:16
+- ctxt: shortcut dialog
+  id: Focus Entry
+  kind: single
+  uses: 1
+  sites:
+  - data/resources/shortcuts-dialog.ui:28
+- ctxt: shortcut dialog
+  id: General
+  kind: single
+  uses: 1
+  sites:
+  - data/resources/shortcuts-dialog.ui:6
+- ctxt: shortcut dialog
+  id: Keyboard Shortcuts
+  kind: single
+  uses: 1
+  sites:
+  - data/resources/shortcuts-dialog.ui:54
+- ctxt: shortcut dialog
+  id: Open Menu
+  kind: single
+  uses: 1
+  sites:
+  - data/resources/shortcuts-dialog.ui:9
+- ctxt: shortcut dialog
+  id: Quit
+  kind: single
+  uses: 1
+  sites:
+  - data/resources/shortcuts-dialog.ui:66
+- ctxt: shortcut dialog
+  id: View Bookmarks
+  kind: single
+  uses: 1
+  sites:
+  - data/resources/shortcuts-dialog.ui:44
+- ctxt: shortcut dialog
+  id: View Chord Variants
+  kind: single
+  uses: 1
+  sites:
+  - data/resources/shortcuts-dialog.ui:22

@@ -1,0 +1,8 @@
+lib/fretboard/about_dialog.rb
+lib/fretboard/barre_spin.rb
+lib/fretboard/chord_diagram_top_toggle.rb
+lib/fretboard/chord_name_entry.rb
+lib/fretboard/i18n.rb
+lib/fretboard/primary_menu.rb
+lib/fretboard/shortcuts_dialog.rb
+lib/fretboard/window.rb

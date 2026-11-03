@@ -9,6 +9,11 @@ module Fretboard
   # The directory sits next to lib/ in a checkout, and is shipped in the gem.
   def self.data_dir = File.expand_path("../data", __dir__)
 
+  # Where the gettext catalogues live: po/LINGUAS and one po/<language>.po per
+  # language. Like data/, the directory sits next to lib/ in a checkout, is
+  # shipped in the gem and is copied beside lib/ by the Nix package.
+  def self.po_dir = File.expand_path("../po", __dir__)
+
   def self.icons_dir = File.join(data_dir, "icons")
 
   def self.assets_dir = File.join(data_dir, "assets")
@@ -16,4 +21,5 @@ module Fretboard
   def self.asset_path(name) = File.join(assets_dir, name)
 end
 
+require_relative "fretboard/i18n"
 require_relative "fretboard/application"

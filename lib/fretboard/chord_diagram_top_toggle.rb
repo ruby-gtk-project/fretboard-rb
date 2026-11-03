@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "adwaita"
+require_relative "i18n"
 
 module Fretboard
   # ChordDiagramTopToggle is the head of one string, above the nut: a
@@ -15,7 +16,24 @@ module Fretboard
   # click on an already-active toggle emits no "toggled" at all, and that is
   # the click that flips open to muted and back.
   class ChordDiagramTopToggle
+    include I18n
+
     STATES = %i[off open muted].freeze
+
+    # The tooltip upstream shows for each state, with `{}` standing in for the
+    # note the string sounds. Marked here and translated at display, so the
+    # locale that matters is the one the tooltip is shown in.
+    TOOLTIPS = {
+      # translators: The text between the `{}` markers is the note of the
+      # string that is not open.
+      off:   N_("Not Open ({})"),
+      # translators: The text between the `{}` markers is the note of the open
+      # string. "Open" is an adjective, not a verb.
+      open:  N_("Open ({})"),
+      # translators: The text between the `{}` markers is the note of the
+      # muted string.
+      muted: N_("Muted ({})"),
+    }.freeze
 
     ICONS = {
       off:   "dot-symbolic",
@@ -24,6 +42,11 @@ module Fretboard
     }.freeze
 
     attr_reader :state
+
+    # The string this toggle heads, numbered 6 to 1 the way upstream's
+    # `number` property is. Upstream puts it in the button's accessible label;
+    # see update_tooltip for why the port cannot.
+    attr_reader :number
 
     def initialize(number, note_name, &on_clicked)
       @number = number
@@ -141,22 +164,18 @@ module Fretboard
         end
       end
 
-      # Upstream also sets an accessible label ("String 1, Open") with
-      # gtk_accessible_update_property, which the Ruby bindings cannot call —
-      # update_property takes a C array of enum values and the introspection
-      # loader has no conversion for it. The string number therefore goes into
-      # the tooltip, which is what assistive technology reads here.
+      # The tooltip is upstream's, verbatim and translated. Upstream also sets
+      # an accessible label that names the string number ("String 1, Open")
+      # with gtk_accessible_update_property, which the Ruby bindings cannot
+      # call — update_property takes a C array of enum values and the
+      # introspection loader raises NotImplementedError for it — so the number
+      # reaches assistive technology through the diagram's layout rather than
+      # through this widget.
       def update_tooltip
         button.tooltip_text = tooltip_text
       end
 
-      def tooltip_text
-        case @state
-        when :open then "String #{@number}, Open (#{@note_name})"
-        when :muted then "String #{@number}, Muted (#{@note_name})"
-        else "String #{@number}, Not Open (#{@note_name})"
-        end
-      end
+      def tooltip_text = i18n_fmt(_(TOOLTIPS.fetch(@state)), @note_name)
 
       def icon(state)
         Gtk::Image.new.tap do |image|

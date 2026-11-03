@@ -1,0 +1,266 @@
+# Cornish translation for Fretboard.
+# Copyright (C) 2026 Fretboard's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Fretboard package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Flynn Peck <cirilla@tuta.io>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Fretboard main\n"
+"Report-Msgid-Bugs-To: https://github.com/bragefuglseth/fretboard/issues\n"
+"POT-Creation-Date: 2026-06-30 23:16+0000\n"
+"PO-Revision-Date: 2026-07-02 17:28+0100\n"
+"Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
+"Language-Team: kw\n"
+"Language: kw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-DL-VCS-Web: https://github.com/bragefuglseth/fretboard\n"
+"X-DL-Lang: kw\n"
+"X-DL-Module: Fretboard\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 50.0\n"
+
+#: data/dev.bragefuglseth.Fretboard.desktop.in.in:2
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:7
+#: src/widgets/window.blp:5 src/widgets/window.blp:13
+msgid "Fretboard"
+msgstr "Fretbordh"
+
+#: data/dev.bragefuglseth.Fretboard.desktop.in.in:3
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:8
+msgid "Look up guitar chords"
+msgstr "Hwilas kordys gyttern"
+
+#: data/dev.bragefuglseth.Fretboard.desktop.in.in:9
+msgid "guitar;chords"
+msgstr "gyttern;gitar;kordys"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:13
+msgid ""
+"How was that chord played, again? Fretboard lets you find guitar chords by "
+"typing their names or plotting them on an interactive guitar neck. When you "
+"have identified a chord, you can experiment with changing it, see more ways "
+"to play it, or bookmark it to save it for later. No matter if you are a "
+"beginner or an advanced guitarist, you can use Fretboard to practice, learn, "
+"and master your favorite songs!"
+msgstr ""
+"Fatel veu an kord na senys, arta? Fretbordh a as dhywgh kavos kordys gyttern "
+"gans ow jynnskrifa aga henwyn po ow splattya dhedha war'n konna gyttern "
+"kesvewek. Pan vi re kavas kord, hwi a yll arbrevi gans ow chanjya, gweles "
+"agwedhow moy rag seni, po lyververkya rag sawya rag wosa henna. Na fors owgh "
+"dallether po gwarier avonsys, hwi a yll devnydhya Fretbordh rag omassaya, "
+"dyski, ha perfydhhe agas kanow drudh!"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:21
+msgid ""
+"Fretboard is proudly part of GNOME Circle, an initiative that champions the "
+"great software that is available for the GNOME platform. For more "
+"information, visit the GNOME Circle website."
+msgstr ""
+"Fretbordh yw darn a GNOME Kylgh, ragdres mayth a skoodh an medhelweyth "
+"bryntin kavadow rag an vynk GNOME. Rag moy kedhlow, vysytyewgh an wiasva "
+"GNOME Kylgh."
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:27
+msgid "Displaying a chord"
+msgstr "Ow tiskwedhes kord"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:31
+msgid "Displaying a barre chord"
+msgstr "Ow tiskwedhes kord barre"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:35
+msgid "Showing variants of a chord"
+msgstr "Ow tiskwedhes variennow a gord"
+
+#: data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in:39
+msgid "The bookmarks page"
+msgstr "An folen lyververkys"
+
+#. translators: "right-handed" and "left-handed" are enum values, and should not be translated
+#: data/dev.bragefuglseth.Fretboard.gschema.xml:16
+msgid "Can be either “right-handed” or “left-handed”."
+msgstr "A yll bos po “dyghowek” po “kledhek”."
+
+#: data/resources/shortcuts-dialog.ui:6
+msgctxt "shortcut dialog"
+msgid "General"
+msgstr "Ollgemmyn"
+
+#: data/resources/shortcuts-dialog.ui:9
+msgctxt "shortcut dialog"
+msgid "Open Menu"
+msgstr "Ygeri Rol"
+
+#. translators: "Empty" is a verb
+#: data/resources/shortcuts-dialog.ui:16
+msgctxt "shortcut dialog"
+msgid "Empty Chord"
+msgstr "Kord Gwag"
+
+#: data/resources/shortcuts-dialog.ui:22
+msgctxt "shortcut dialog"
+msgid "View Chord Variants"
+msgstr "Gweles Variennow Kord"
+
+#: data/resources/shortcuts-dialog.ui:28
+msgctxt "shortcut dialog"
+msgid "Focus Entry"
+msgstr "Fogella Enworrans"
+
+#: data/resources/shortcuts-dialog.ui:38
+msgctxt "shortcut dialog"
+msgid "Bookmark Chord"
+msgstr "Lyververkya Kord"
+
+#: data/resources/shortcuts-dialog.ui:44
+msgctxt "shortcut dialog"
+msgid "View Bookmarks"
+msgstr "Gweles Lyververkys"
+
+#: data/resources/shortcuts-dialog.ui:54
+msgctxt "shortcut dialog"
+msgid "Keyboard Shortcuts"
+msgstr "Kesunyansow Bysowek"
+
+#: data/resources/shortcuts-dialog.ui:60
+msgctxt "shortcut dialog"
+msgid "Close Window"
+msgstr "Degea Fenester"
+
+#: data/resources/shortcuts-dialog.ui:66
+msgctxt "shortcut dialog"
+msgid "Quit"
+msgstr "Kwytya"
+
+#: src/widgets/barre_spin.blp:9
+msgid "Move Up"
+msgstr "Yskynna"
+
+#: src/widgets/barre_spin.blp:28
+msgid "Move Down"
+msgstr "Diyskynna"
+
+#: src/widgets/chord_diagram_top_toggle.rs:168
+#, rust-format
+msgid "Not Open ({})"
+msgstr "Nag Ygor ({})"
+
+#. translators: The text between the `{}` markers is the note of the muted string.
+#: src/widgets/chord_diagram_top_toggle.rs:171
+#, rust-format
+msgid "Muted ({})"
+msgstr "Omlavar ({})"
+
+#. translators: The text between the `{}` markers is the note of the open string. "Open" is an adjective, not a verb.
+#: src/widgets/chord_diagram_top_toggle.rs:175
+#, rust-format
+msgid "Open ({})"
+msgstr "Ygor ({})"
+
+#. translators: keep this short! use only 'chord' or 'name' instead of both if necessary.
+#: src/widgets/chord_name_entry.blp:9 src/widgets/chord_name_entry.blp:12
+msgid "Chord Name"
+msgstr "Hanow Kord"
+
+#: src/widgets/chord_name_entry.blp:34
+msgid "Confirm"
+msgstr "Konfirmya"
+
+#: src/widgets/chord_name_entry.blp:49
+msgid "Enharmonic Equivalent"
+msgstr "Egwal Enkessenek"
+
+#: src/widgets/window.blp:27
+msgid "Main Menu"
+msgstr "Pennrol"
+
+#: src/widgets/window.blp:78
+msgid "Chord not found"
+msgstr "Kord nag yw kevys"
+
+#: src/widgets/window.blp:110
+msgid "View _Variants"
+msgstr "Gweles _Variennow"
+
+#: src/widgets/window.blp:144
+msgid "No Variants"
+msgstr "Variennow Vyth"
+
+#: src/widgets/window.blp:178 src/widgets/window.rs:374
+msgid "Bookmarks"
+msgstr "Lyververkys"
+
+#: src/widgets/window.blp:213
+msgid "Guitar Type"
+msgstr "Eghen Yttern"
+
+#: src/widgets/window.blp:216
+msgid "Right-handed"
+msgstr "Dyghowek"
+
+#: src/widgets/window.blp:222
+msgid "Left-handed"
+msgstr "Kledhek"
+
+#. translators: "Empty" is a verb
+#: src/widgets/window.blp:231
+msgid "_Empty Chord"
+msgstr "Kord _Gwag"
+
+#: src/widgets/window.blp:238
+msgid "_Keyboard Shortcuts"
+msgstr "_Kesunyansow Bysowek"
+
+#: src/widgets/window.blp:243
+msgid "_About Fretboard"
+msgstr "_A-dro dhe Fretbordh"
+
+#: src/widgets/window.rs:297
+msgid "Remove Bookmark"
+msgstr "Remova Lyververk"
+
+#: src/widgets/window.rs:299
+msgid "Bookmark"
+msgstr "Lyververk"
+
+#. translators: The text between the `{}` markers becomes a link to the app's issue tracker. Include both of the markers.
+#: src/widgets/window.rs:310
+#, rust-format
+msgid ""
+"There are no chords with this name in Fretboard’s built-in chord set. If you "
+"think there should be, {}reach out{}."
+msgstr ""
+"Nyns eus kordys gans an hanow ma y'n sett a-bervedh Fretbordh. Mar krysowgh "
+"yma edhom dhe vos, {}ystyn{}."
+
+#: src/widgets/window.rs:372
+msgid "No Bookmarks"
+msgstr "Lyververkys Vyth"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: src/widgets/window.rs:693
+msgid "translator-credits"
+msgstr "Flynn"
+
+#: src/widgets/window.rs:695
+msgid "Donate"
+msgstr "Argevri"
+
+#. Translators: Metainfo for the app Keypunch. <https://github.com/bragefuglseth/keypunch>
+#: src/widgets/window.rs:700
+msgid "Keypunch"
+msgstr "Alhwedhen-Toller"
+
+#. Translators: Metainfo for the app Keypunch. <https://github.com/bragefuglseth/keypunch>
+#: src/widgets/window.rs:702
+msgid "Practice your typing skills"
+msgstr "Omassaya agas sleyneth jynnskrifa"
+
+#~ msgid "View Shortcuts"
+#~ msgstr "Gweles Kesunyansow Bysowek"

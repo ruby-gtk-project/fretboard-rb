@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "adwaita"
+require_relative "i18n"
 
 module Fretboard
   # BarreSpin is the spinner beside the neck that says which fret the top of
@@ -11,6 +12,8 @@ module Fretboard
   # sensitivity with property bindings on a "value" property; without a GObject
   # property, `value=` updates all three directly.
   class BarreSpin
+    include I18n
+
     MIN_VALUE = 1
     MAX_VALUE = 12
 
@@ -55,11 +58,11 @@ module Fretboard
     end
 
     def decrement_button
-      @decrement_button ||= spin_button("up-large-symbolic", "Move Up")
+      @decrement_button ||= spin_button("up-large-symbolic", _("Move Up"))
     end
 
     def increment_button
-      @increment_button ||= spin_button("down-large-symbolic", "Move Down")
+      @increment_button ||= spin_button("down-large-symbolic", _("Move Down"))
     end
 
     def column = @column ||= Gtk::Box.new(:vertical, 0)

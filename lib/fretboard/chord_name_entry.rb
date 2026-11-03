@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "adwaita"
+require_relative "i18n"
 require_relative "chord_ops"
 
 module Fretboard
@@ -13,6 +14,8 @@ module Fretboard
   # the on_enharmonic_clicked callback, and the entry's own "activate" is
   # forwarded to on_activate once the typed name has been prettified.
   class ChordNameEntry
+    include I18n
+
     def initialize(on_activate: nil, on_enharmonic_clicked: nil)
       @on_activate = on_activate
       @on_enharmonic_clicked = on_enharmonic_clicked
@@ -82,21 +85,21 @@ module Fretboard
         field.hexpand = true
         # translators: keep this short! use only 'chord' or 'name' instead of
         # both if necessary.
-        field.placeholder_text = "Chord Name"
-        field.tooltip_text = "Chord Name"
+        field.placeholder_text = _("Chord Name")
+        field.tooltip_text = _("Chord Name")
       end
     end
 
     def confirm_button
       @confirm_button ||= overlay_button.tap do |button|
         button.icon_name = "checkmark-large-symbolic"
-        button.tooltip_text = "Confirm"
+        button.tooltip_text = _("Confirm")
       end
     end
 
     def enharmonic_button
       @enharmonic_button ||= overlay_button.tap do |button|
-        button.tooltip_text = "Enharmonic Equivalent"
+        button.tooltip_text = _("Enharmonic Equivalent")
       end
     end
 
