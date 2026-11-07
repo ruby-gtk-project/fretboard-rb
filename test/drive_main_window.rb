@@ -108,6 +108,35 @@ GtkDriver.drive(app, shots: "tmp/shots") do |d, application|
     d.shot("04-plotted")
   end
 
+  # [0, 0, 0, 0, 0, 2] is not a fingering stored anywhere in data/chords.txt
+  # (checked against every block's positions), so window.rb:515's `name_for`
+  # cannot satisfy this one from the database and has to fall through to
+  # ChordNameAlgorithm.calculate_chord_name — the one path in the app that
+  # reaches lib/fretboard/chord_name_algorithm.rb at all. Its intervals above
+  # the root (E) are [0, 2, 4, 5, 7, 10], the "11" suffix, giving "Em11".
+  EM11_NOT_IN_DATABASE = [0, 0, 0, 0, 0, 2].freeze
+
+  d.step("clicking the neck with a fingering absent from the database") do
+    act(window.call, "empty-chord")
+    window.call.diagram.chord = EM11_NOT_IN_DATABASE.dup
+    # The fingering's lone fretted note (fret 2) becomes the diagram's neck
+    # position, so the toggle that assigning `chord=` actually lit up sits at
+    # the *adjusted* fret, index 0 (fret 2 minus the barre offset of 1), the
+    # same way the Am case above clicks toggle(2, 1) rather than toggle(2, 2).
+    window.call.diagram.toggle(5, 0).button.signal_emit("clicked")
+  end
+
+  d.step("the fallback chord-name algorithm named it") do
+    d.check("the database has no name for this fingering") do
+      window.call.database.name_from_chord(EM11_NOT_IN_DATABASE).nil?
+    end
+    d.check("the algorithm derived Em11") do
+      Fretboard::ChordNameAlgorithm.calculate_chord_name(EM11_NOT_IN_DATABASE) == "Em11"
+    end
+    d.check("the entry shows the algorithm's name") { window.call.entry.entry.text == "Em11" }
+    d.check("chord actions are showing") { window.call.feedback_stack.visible_child_name == "chord-actions" }
+  end
+
   d.step("emptying the chord clears everything") do
     act(window.call, "empty-chord")
   end

@@ -4,6 +4,22 @@ This project uses `kettle-test` as its RSpec harness. The generated
 `spec/spec_helper.rb` requires `kettle/test/rspec`, which installs the shared
 test configuration and helper APIs used throughout the suite.
 
+## Running without kettle-test
+
+`kettle-test` is a gemspec development dependency, declared for `bundle
+install` at the repo root. It is **not** vendored into this fork's Nix
+devshell: `flake.nix`'s `devShells.default` only carries the app's runtime
+gems (`nix/Gemfile` — `adwaita`, `gtk4`) plus a bare `rspec` from nixpkgs for
+running the suite, so `kettle/test/rspec`, `kettle-dev` and rspec-core's own
+gem are missing there.
+
+`spec/spec_helper.rb` handles this: it tries `require "kettle/test/rspec"`
+first and falls back to plain `require "rspec/core"` with a warning on
+`LoadError`. Inside the Nix devshell, specs therefore run under plain RSpec
+and the harness helpers below are **not** available — they only load when
+`bundle exec rspec` runs against the root `Gemfile`'s full development
+bundle, where `kettle-test` is actually installed.
+
 ## Harness Helpers
 
 These helpers are available in specs after `spec/spec_helper.rb` loads:

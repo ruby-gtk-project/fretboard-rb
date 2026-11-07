@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2024 Brage Fuglseth -->
+<component type="desktop-application">
+  <id>@app-id@</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Fretboard</name>
+  <summary>Look up guitar chords</summary>
+  <developer id="dev.bragefuglseth">
+    <name translate="no">Brage Fuglseth</name>
+  </developer>
+  <description>
+    <p>
+      How was that chord played, again? Fretboard lets you find guitar chords
+      by typing their names or plotting them on an interactive guitar neck.
+      When you have identified a chord, you can experiment with changing it,
+      see more ways to play it, or bookmark it to save it for later. No matter
+      if you are a beginner or an advanced guitarist, you can use Fretboard to
+      practice, learn, and master your favorite songs!
+    </p>
+    <p>
+      Fretboard is proudly part of GNOME Circle, an initiative that champions the great software that is available for the GNOME platform. For more information, visit the GNOME Circle website.
+    </p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Displaying a chord</caption>
+      <image>https://raw.githubusercontent.com/bragefuglseth/fretboard/main/data/screenshots/screenshot-1.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Displaying a barre chord</caption>
+      <image>https://raw.githubusercontent.com/bragefuglseth/fretboard/main/data/screenshots/screenshot-2.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Showing variants of a chord</caption>
+      <image>https://raw.githubusercontent.com/bragefuglseth/fretboard/main/data/screenshots/screenshot-3.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>The bookmarks page</caption>
+      <image>https://raw.githubusercontent.com/bragefuglseth/fretboard/main/data/screenshots/screenshot-4.png</image>
+    </screenshot>
+  </screenshots>
+  <branding>
+    <color type="primary" scheme_preference="light">#99c1f1</color>
+    <color type="primary" scheme_preference="dark">#7091bc</color>
+  </branding>
+  <url type="homepage">https://apps.gnome.org/Fretboard</url>
+  <url type="bugtracker">https://github.com/bragefuglseth/fretboard/issues</url>
+  <url type="contribute">https://welcome.gnome.org/app/Fretboard</url>
+  <url type="translate">https://l10n.gnome.org/module/Fretboard</url>
+  <url type="vcs-browser">https://github.com/bragefuglseth/fretboard</url>
+  <url type="contact">https://matrix.to/#/@bragefuglseth:matrix.org</url>
+  <url type="donation">https://bragefuglseth.no/donate.html</url>
+  <update_contact>bragefuglseth_AT_gnome.org</update_contact>
+  <content_rating type="oars-1.1"/>
+  <translation type="gettext">fretboard</translation>
+  <requires>
+    <internet>offline-only</internet>
+    <display_length compare="ge">360</display_length>
+  </requires>
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </supports>
+  <launchable type="desktop-id">@app-id@.desktop</launchable>
+  <releases>
+    <release date="2025-04-14" version="9.1">
+      <description translate="no">
+        <p>This update improves the translations of Fretboard into different languages.</p>
+      </description>
+    </release>
+  </releases>
+</component>

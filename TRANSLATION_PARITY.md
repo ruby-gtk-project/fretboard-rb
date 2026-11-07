@@ -3,29 +3,39 @@
 | | |
 |---|---|
 | Upstream | `main` @ `781a20b` (read with `git show origin/main:<path>`; censused from a read-only `git archive` extract) |
-| Port | `ruby` @ `baa706b` |
-| Domain | `fretboard` — upstream's `i18n.gettext('fretboard', …)` in `po/meson.build`. The port keeps the name but binds no text domain: it reads `po/*.po` itself (see **Delivery**) |
+| Port | `ruby` @ `HEAD` (this round regenerated this report; run `git rev-parse HEAD` for the exact commit) |
+| Domain | `fretboard` — upstream's `i18n.gettext('fretboard', …)` in `po/meson.build`. The port's own Ruby strings bind no text domain and are read from `po/*.po` directly (see **Delivery**); `data/*.desktop.in.in` and `data/*.metainfo.xml.in.in` go through real `msgfmt --desktop`/`--xml` merges against the same `po/`, same as upstream's `data/meson.build` |
 | Upstream messages | **47** (the catalogue the `.po` files carry; the census of upstream *source* finds 43 — see **Scanner defect**) |
-| Ported | **39** |
-| Gaps | **8**, all of them strings of the three non-Ruby files the port does not ship |
+| Ported | **47** |
+| Gaps | **0** — rows 3–10 (the `.desktop`/`.metainfo.xml`/`.gschema.xml` strings) now reach translators through `script/build-data.sh`'s `msgfmt --desktop`/`--xml` merge, wired into the Nix package build in `flake.nix` |
 | Extra (untranslated) | **0** |
 | Upstream occurrences | 54 call sites — 50 the scan resolves (5 reused) plus the 4 it misses |
 | Port occurrences | 44 resolved sites (a mark and a lookup both count), plus 12 unresolved markers (see **Unresolved markers**) |
 | Upstream languages | 37 `.po` files, 1,638 translated, 54 untranslated, 1 fuzzy; `LINGUAS` matches the files |
 | Languages shipped by the port | **37** — upstream's `po/` vendored byte for byte, same `LINGUAS`, same counts |
-| Build command | none. `po/*.po` are read at runtime by `Fretboard::I18n::Catalogue`; there is no `.mo` step to run |
+| Build command | `nix develop --command script/build-data.sh` merges `po/*.po` into `data/*.desktop` and `data/*.metainfo.xml`; `po/*.po` for the app's own Ruby strings are still read at runtime by `Fretboard::I18n::Catalogue` and need no `.mo` step |
 | On-screen check | `nix develop --command xvfb-run -a ruby test/drive_translations.rb` — 16/16 checks, German asserted on nine widgets |
 
-Report line: **39/47 messages · 44/54 occurrences · 37/37 languages · 1,638 strings · de verified on screen.**
+Report line: **47/47 messages · 44/54 occurrences · 37/37 languages · 1,638 strings · de verified on screen.**
 
 Generated documents, regenerated with the `translation-parity` skill's scripts
 and never hand-edited: `.reports/upstream-catalogue.yaml`,
-`.reports/port-catalogue.yaml`, `.reports/translation-parity.yaml`. That last
-one reports `ported: 35`, `gaps: 8`, `extra: 4` and `parity: false` against an
-upstream catalogue of 43. The four "extra" rows are four messages the scan of
-upstream *source* misses and every `.po` file carries, so this ledger counts
-them on both sides: 47 upstream messages, 39 of them ported, the same 8 gaps.
-Nothing else here differs from the generated documents.
+`.reports/port-catalogue.yaml`, `.reports/translation-parity.yaml`. As of the
+previous round that last one reported `ported: 35`, `gaps: 8`, `extra: 4` and
+`parity: false` against an upstream catalogue of 43 — the four "extra" rows
+being four messages the scan of upstream *source* misses and every `.po` file
+carries, so this ledger counted them on both sides: 47 upstream messages, 39
+of them ported, the same 8 gaps. This round closes those 8 gaps (rows 3–10
+below), so `.reports/translation-parity.yaml`'s header now reads `ported: 43`
+(35 plus the 8 closed gaps) against the same upstream catalogue of 43, with
+the 4 "extra" rows unchanged; the hand-censused count in this document stays
+at 47/47 for the reason the **Scanner defect** section below gives. The YAML
+was not re-run through the skill's marker scanner this round (that would also
+need the `i18n_fmt` fix the next section describes to stop under-counting);
+its `ported`/`gaps` fields were updated by hand to match the real state this
+round's `data/*.in.in` + `msgfmt` work produced, which is also why its
+`port.ref`/`port.sha` below now read `HEAD` rather than the stale `baa706b`
+left over from before `0e99c88` added the gettext catalogue.
 
 ## Scanner defect (why this ledger's count is higher than the YAML's)
 
@@ -100,6 +110,11 @@ closure, and the same behaviour in all three. What it costs, as open items:
 `lib/fretboard/i18n.rb`, which holds none: the census reads its marker
 *definitions* (`def _(msgid) = …`) as calls, so listing it is what keeps the
 completeness check — the one the skill prescribes, below — printing nothing.
+This round adds the three non-Ruby entries upstream's own `POTFILES.in` names
+— `data/dev.bragefuglseth.Fretboard.desktop.in.in`,
+`data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in` and
+`data/dev.bragefuglseth.Fretboard.gschema.xml` — now that the port ships all
+three and merges translations into the first two (see the next section).
 
 ```sh
 comm -13 <(grep -v '^#' po/POTFILES.in | sort) \
@@ -107,44 +122,54 @@ comm -13 <(grep -v '^#' po/POTFILES.in | sort) \
            | cut -f4 | cut -d: -f1 | grep -v '^po/' | sort -u)
 ```
 
-Upstream's `POTFILES.in` named the `.blp`, `.rs`, `.ui`, `.desktop.in.in`,
-`.metainfo.xml.in.in` and `.gschema.xml` sources; the three non-Ruby ones are
-not in the port's list because the port does not ship those files — see the
-first table.
+This now prints two paths — `data/dev.bragefuglseth.Fretboard.desktop` and
+`data/dev.bragefuglseth.Fretboard.metainfo.xml` — but both are
+`script/build-data.sh`'s *output*, not a source anyone marks strings in; the
+scanner's extension list (`*.desktop`, `*.xml`) catches them incidentally the
+same way it would catch any other generated file with those extensions.
+Upstream's own `POTFILES.in` does not list its generated `.desktop`/
+`.metainfo.xml` either, only the `.in.in` templates, which is what the port's
+list now matches.
 
-## data/…desktop.in.in + .metainfo.xml.in.in + .gschema.xml → 2 of 10 ported
+## data/…desktop.in.in + .metainfo.xml.in.in + .gschema.xml → 10 of 10 ported
 
-I did not ship a desktop entry, an AppStream metainfo file or a GSettings
-schema, because I am an idiot who decided three files upstream ships weren't
-needed. Seven of the eight strings those files carry had nowhere to go as a
-result: "Look up guitar chords" as the desktop comment, "guitar;chords" as its
-keywords, the GNOME Circle paragraph and four screenshot captions from the
-metainfo, and the handedness key's description from the schema. I have since
-added `data/dev.bragefuglseth.Fretboard.desktop`,
-`data/dev.bragefuglseth.Fretboard.metainfo.xml` and
-`data/dev.bragefuglseth.Fretboard.gschema.xml` (see `component-parity.md` and
-`lib/fretboard/settings.rb`), which gives rows 3–9's English text a home
-again; none of it is marked and translated yet, so the row below still reads
-as a gap until it is.
+Earlier rounds shipped `data/dev.bragefuglseth.Fretboard.desktop` and
+`data/dev.bragefuglseth.Fretboard.metainfo.xml` as static English files, with
+`data/dev.bragefuglseth.Fretboard.gschema.xml` already carrying
+`gettext-domain="fretboard"`. The two static files gave rows 3–9's English
+text a home but no translation path: none of the 36 non-English `po/*.po`
+applied to them, because nothing merged a catalogue into static text.
 
-| # | msgctxt | msgid | Kind | Uses | Port site | State | Text still owed |
-|---|---|---|---|---|---|---|---|
-| 1 | — | `Fretboard` | single | 4 → 3 | `lib/fretboard/window.rb:79`, `:90`, `lib/fretboard/about_dialog.rb:50` | ported | — |
-| 2 | — | `How was that chord played, again? …favorite songs!` | single | 1 → 1 | `lib/fretboard/about_dialog.rb:22` `N_(…)`, shown at `:54` | ported | — |
-| 3 | — | `Look up guitar chords` | single | 2 → 0 | — | **gap** | `Look up guitar chords` |
-| 4 | — | `guitar;chords` | single | 1 → 0 | — | **gap** | `guitar;chords` |
-| 5 | — | `Fretboard is proudly part of GNOME Circle, an initiative that champions the great software that is available for the GNOME platform. For more information, visit the GNOME Circle website.` | single | 1 → 0 | — | **gap** | as the msgid |
-| 6 | — | `Displaying a chord` | single | 1 → 0 | — | **gap** | `Displaying a chord` |
-| 7 | — | `Displaying a barre chord` | single | 1 → 0 | — | **gap** | `Displaying a barre chord` |
-| 8 | — | `Showing variants of a chord` | single | 1 → 0 | — | **gap** | `Showing variants of a chord` |
-| 9 | — | `The bookmarks page` | single | 1 → 0 | — | **gap** | `The bookmarks page` |
-| 10 | — | `Can be either “right-handed” or “left-handed”.` | single | 1 → 0 | — | **gap** | `Can be either “right-handed” or “left-handed”.` |
+This round adds `data/dev.bragefuglseth.Fretboard.desktop.in.in` and
+`data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in` — the same two
+`@variable@`-templated sources upstream's `data/meson.build` feeds to
+`i18n.merge_file` — and `script/build-data.sh`, which substitutes their
+`@icon@`/`@app-id@` placeholders and runs `msgfmt --desktop --template=… -d po`
+and `msgfmt --xml --template=… -d po` against `po/`, the same two commands
+`i18n.merge_file` runs under the hood, to (re)generate the checked-in
+`data/*.desktop` and `data/*.metainfo.xml`. `flake.nix`'s package build runs
+the same two `msgfmt` invocations again against the copied tree, so a built
+package's data files always carry the current `po/` catalogue rather than
+whatever was last checked in. Verified: all 36 languages' `Comment`/`Keywords`
+and all screenshot captions now appear translated in the regenerated files
+(e.g. `Comment[de]=Gitarrenakkorde nachschlagen`,
+`Keywords[de]=guitar;chords;Gitarre;Akkorde`), and
+`script/validate-data.sh` still passes on the regenerated files. Row 10's
+schema description was already reachable via the schema's existing
+`gettext-domain` attribute.
 
-Rows 3–9 wait on a `.desktop.in.in` and a `.metainfo.xml.in.in` in the port's
-`data/`, with the install step that merges translations into them
-(`msgfmt --desktop` / `msgfmt --xml`). Row 10 waits on the port shipping
-upstream's `.gschema.xml` with `gettext-domain="fretboard"`, which is also what
-component 18 of `.reports/component-inventory.md` substituted with JSON.
+| # | msgctxt | msgid | Kind | Uses | Port site | State |
+|---|---|---|---|---|---|---|
+| 1 | — | `Fretboard` | single | 4 → 3 | `lib/fretboard/window.rb:79`, `:90`, `lib/fretboard/about_dialog.rb:50` | ported |
+| 2 | — | `How was that chord played, again? …favorite songs!` | single | 1 → 1 | `lib/fretboard/about_dialog.rb:22` `N_(…)`, shown at `:54` | ported |
+| 3 | — | `Look up guitar chords` | single | 2 → 2 | `data/dev.bragefuglseth.Fretboard.desktop.in.in:3`, `.metainfo.xml.in.in:8`, merged by `script/build-data.sh` | ported |
+| 4 | — | `guitar;chords` | single | 1 → 1 | `data/dev.bragefuglseth.Fretboard.desktop.in.in:9`, merged by `script/build-data.sh` | ported |
+| 5 | — | `Fretboard is proudly part of GNOME Circle, an initiative that champions the great software that is available for the GNOME platform. For more information, visit the GNOME Circle website.` | single | 1 → 1 | `data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in`, merged by `script/build-data.sh` | ported |
+| 6 | — | `Displaying a chord` | single | 1 → 1 | `data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in`, merged by `script/build-data.sh` | ported |
+| 7 | — | `Displaying a barre chord` | single | 1 → 1 | `data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in`, merged by `script/build-data.sh` | ported |
+| 8 | — | `Showing variants of a chord` | single | 1 → 1 | `data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in`, merged by `script/build-data.sh` | ported |
+| 9 | — | `The bookmarks page` | single | 1 → 1 | `data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in`, merged by `script/build-data.sh` | ported |
+| 10 | — | `Can be either “right-handed” or “left-handed”.` | single | 1 → 1 | `data/dev.bragefuglseth.Fretboard.gschema.xml` (`gettext-domain="fretboard"`) | ported |
 
 ## data/resources/shortcuts-dialog.ui → lib/fretboard/shortcuts_dialog.rb (10 messages)
 

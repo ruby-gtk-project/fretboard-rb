@@ -128,7 +128,7 @@
           # computed its wrapper arguments, so a schema would end up somewhere
           # the wrapper never looks. The wrapper below is built by hand and
           # points at both the pre- and post-move paths.
-          nativeBuildInputs = [ pkgs.makeWrapper ];
+          nativeBuildInputs = [ pkgs.makeWrapper pkgs.gettext ];
           buildInputs = [ gems ] ++ gtkStack;
 
           dontBuild = true;
@@ -144,6 +144,32 @@
             # exe/ sits next to lib/ so the launcher's `require "fretboard"`
             # resolves against the copied tree.
             install -Dm755 exe/${launcher} $out/share/fretboard/exe/${launcher}
+
+            # Merge po/*.po into the two gettext-templated data files, the
+            # same i18n.merge_file step upstream's data/meson.build performs
+            # with msgfmt --desktop / --xml (see script/build-data.sh, the
+            # development-time equivalent of this block). Doing it again
+            # here, against the copied tree, means a built package's desktop
+            # and metainfo files always carry the current po/ catalogue
+            # rather than whatever was last checked in.
+            desktop_template="data/dev.bragefuglseth.Fretboard.desktop.in.in"
+            if [ -f "$desktop_template" ]; then
+              app_id="dev.bragefuglseth.Fretboard"
+              merge_dir="$(mktemp -d)"
+              sed "s/@icon@/$app_id/g" "$desktop_template" \
+                > "$merge_dir/$app_id.desktop.in"
+              sed "s/@app-id@/$app_id/g" "data/$app_id.metainfo.xml.in.in" \
+                > "$merge_dir/$app_id.metainfo.xml.in"
+              msgfmt --desktop \
+                --template="$merge_dir/$app_id.desktop.in" \
+                -d po \
+                --output-file="$out/share/fretboard/data/$app_id.desktop"
+              msgfmt --xml \
+                --template="$merge_dir/$app_id.metainfo.xml.in" \
+                -d po \
+                --output-file="$out/share/fretboard/data/$app_id.metainfo.xml"
+              rm -rf "$merge_dir"
+            fi
 
             # Compile any GSettings schema the port ships.
             if [ -d data/schemas ]; then

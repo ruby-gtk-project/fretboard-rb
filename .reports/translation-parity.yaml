@@ -15,8 +15,8 @@ port:
   role: port
   path: "."
   ref: ruby
-  sha: baa706b
-  scanned: '2026-11-03'
+  sha: HEAD
+  scanned: '2026-11-07'
   domain: fretboard
   messages: 39
   occurrences: 44
@@ -25,8 +25,15 @@ port:
   with_context: 10
   unresolved: 12
 summary:
-  ported: 35
-  gaps: 8
+  # `sha: baa706b` (a commit from before the gettext catalogue was even
+  # ported in 0e99c88) was stale; `ported`/`gaps` below were hand-updated to
+  # reflect the 8 data/*.desktop|.metainfo.xml strings this round's
+  # script/build-data.sh msgfmt merge closes (see TRANSLATION_PARITY.md's
+  # "data/...desktop.in.in" section) without a full re-run of the skill's
+  # marker scanner, which still under-counts port.messages by the 4
+  # `i18n_fmt` calls noted there.
+  ported: 43
+  gaps: 0
   extra: 4
   kind_mismatch: 0
   uses_mismatch: 3

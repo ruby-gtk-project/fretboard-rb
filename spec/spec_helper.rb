@@ -20,8 +20,23 @@ rescue LoadError => error
 end
 
 # External RSpec & related config
-require "kettle/test/rspec"
-# `kettle/test/rspec` installs harness helpers documented in spec/README.md.
+#
+# kettle-test is a gemspec development dependency, but this fork's Nix
+# devshell (flake.nix) only vendors the app's runtime gems plus bare
+# `rspec` as a system package — kettle-test, kettle-dev and rspec-core's
+# own gem (as opposed to the nixpkgs-packaged rspec meta-gem) are not on
+# the load path there. Requiring "rspec/core" still works (nixpkgs ships
+# it), so the fallback below configures plain RSpec instead of failing the
+# whole suite before a single example loads. See spec/README.md.
+begin
+  require "kettle/test/rspec"
+  # `kettle/test/rspec` installs harness helpers documented in spec/README.md.
+rescue LoadError => error
+  raise error unless error.message.include?("kettle")
+
+  warn "[spec_helper] kettle-test is not available; falling back to plain RSpec (see spec/README.md)"
+  require "rspec/core"
+end
 
 # This library
 require "fretboard/rb"

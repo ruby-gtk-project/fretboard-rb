@@ -1,3 +1,6 @@
+data/dev.bragefuglseth.Fretboard.desktop.in.in
+data/dev.bragefuglseth.Fretboard.metainfo.xml.in.in
+data/dev.bragefuglseth.Fretboard.gschema.xml
 lib/fretboard/about_dialog.rb
 lib/fretboard/barre_spin.rb
 lib/fretboard/chord_diagram_top_toggle.rb
