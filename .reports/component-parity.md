@@ -1,35 +1,39 @@
 # Component parity — fretboard
 
 Built on `.reports/component-inventory.md` (component-identification, run
-2026-11-03, re-verified against `HEAD` `0e99c88` on 2026-11-07) and a direct
+2026-11-03, re-verified against `HEAD` `dcfe7a6` on 2026-11-07) and a direct
 read of `origin/main` (`781a20b`) alongside `lib/` on `ruby`. Each of the
 21 inventoried components is checked on all four axes — count, style,
 behaviour, text — not just "does a file exist".
 
 ## Verdict
 
-**19 of 21 components have full four-axis parity located by file:line. 2 have
-a real, located gap.** No row below is a correspondence asserted without a
-location; every "yes" cites the port file that carries it.
+**18 of 21 components have full four-axis parity located by file:line and
+are exercised by a real interaction path in the drive gate. 2 have a real,
+located correctness gap (accessible labels, one translation site). 1 more
+(`chord_name_algorithm`) is file-for-file identical to upstream but its
+behaviour has never been exercised by any check — see row 16 and
+`.reports/test-parity.md`.** No row below is a correspondence asserted
+without a location; every "yes" cites the port file that carries it.
 
 | # | Component | Count | Style | Behaviour | Text | Verdict |
 |---|---|---|---|---|---|---|
 | 1 | entry point | yes | n/a | yes | n/a | parity |
 | 2 | application / actions / accels | yes (1 action + 7 accels, `application.rb:59-62`) | n/a | yes | n/a | parity |
 | 3 | main window | yes | yes | yes | yes | parity |
-| 4 | primary menu | yes (3 sections, 5 items, `primary_menu.rb`) | n/a | yes (same 5 actions/targets) | yes (`N_`/`_` on every item) | parity, **unexercised by the drive gate** (see test-parity report) |
-| 5 | shortcuts dialog | yes (3 sections, 10 items) | n/a | n/a | yes (`shortcut dialog` msgctxt) | parity, content **unexercised by the drive gate** |
+| 4 | primary menu | yes (3 sections, 5 items, `primary_menu.rb`) | n/a | yes (same 5 actions/targets) | yes (`N_`/`_` on every item) | parity, now exercised by a real click (see test-parity report) |
+| 5 | shortcuts dialog | yes (3 sections, 10 items) | n/a | n/a | yes (`shortcut dialog` msgctxt) | parity, item text now asserted against the dialog's `SECTIONS` data |
 | 6 | about dialog | yes | n/a | yes | yes | parity |
 | 7 | chord diagram | yes (30 fret toggles, 6 top toggles, 1 barre spin, 5 barre images) | yes | yes | n/a | parity |
 | 8 | chord diagram toggle (fret cell) | yes | yes | yes | n/a | parity |
 | 9 | chord diagram top toggle (string head) | yes | yes | yes | **GAP — accessible label** | **gap** |
-| 10 | barre spin | yes | yes | yes | yes | parity, interaction **unexercised by the drive gate** |
+| 10 | barre spin | yes | yes | yes | yes | parity, clamp/sensitivity now click-tested |
 | 11 | chord name entry | yes | yes | yes | yes, except 1 site | **gap** (shares #9's cause) |
 | 12 | chord preview | yes | yes | yes | n/a | parity |
-| 13 | preview buttons | yes | yes | yes (variants click verified; bookmarks click **unexercised**) | n/a | parity |
+| 13 | preview buttons | yes | yes | yes (both the variants-page and the bookmarks-page click paths are now driven) | n/a | parity |
 | 14 | database | yes | n/a | yes | n/a | parity |
 | 15 | chord ops | yes | n/a | yes | n/a | parity |
-| 16 | chord name algorithm | yes | n/a | yes | n/a | parity |
+| 16 | chord name algorithm | yes (file exists, same algorithm) | n/a | **located but unverified** — see test-parity report: `window.rb:515`'s fallback call site is never reached by either drive script and has no RSpec example | n/a | file-level parity, **behaviour unexercised** |
 | 17 | bookmarks / current-chord persistence | yes | n/a | yes | n/a | parity |
 | 18 | settings | yes (4 keys, same defaults) | n/a | **substituted mechanism, not located as equivalent** | n/a | **flagged** (see below) |
 | 19 | stylesheet | yes | yes (documented class-selector correspondence, verified byte-diff) | n/a | n/a | parity |
@@ -120,6 +124,22 @@ toggles or the enharmonic button; see `TRANSLATION_PARITY.md` and
 `Gtk::Accessible#update_property`/`#update_relation`/`#update_state` and why
 the `gobject-introspection` gem's argument marshaller is the actual blocker —
 a hard problem, recorded as one, not a closure.
+
+## Status refresh (round 3, this pass)
+
+Re-verified live rather than trusting round 2's text: `grep -rn
+update_property lib/` still returns nothing, so Gap A is confirmed still
+open. The drive gate grew from 49/49 to 68/68 checks between round 2 and
+this pass (commit `dcfe7a6`), and reading the new assertions closed every
+"unexercised by the drive gate" annotation this report previously carried
+for components 4, 5, 10 and 13 (menu click, shortcuts item text, barre-spin
+click, bookmarks-preview click) — see `.reports/test-parity.md` for the
+line-by-line confirmation. One new gap this pass located that round 2 did
+not: component 16 (`chord_name_algorithm`) is ported file-for-file but its
+fallback branch (`window.rb:515`) is reached by neither drive script and has
+no RSpec example, because `spec/` has none and, separately, the suite
+cannot even load in this fork's dev shell — see `.reports/test-parity.md`'s
+headline finding.
 
 ## Confirmed correspondences (not gaps)
 

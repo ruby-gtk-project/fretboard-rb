@@ -57,3 +57,16 @@ separate step this task did not perform.
   --name-only origin/main | grep -i test` returns nothing), so there is
   no upstream test suite to establish parity against.
 - No upstream component was found without a `lib/*.rb` counterpart.
+
+## Re-verified 2026-11-07 against `HEAD` `dcfe7a6`
+
+Re-read `git ls-tree -r --name-only origin/main` and diffed it against this
+table's source-file list; no upstream file was added or removed since this
+inventory was written, so the 20-row list above still accounts for every
+upstream component. Three items row 16 describes as present (the GSettings
+schema, desktop entry, AppStream metainfo) were JSON/absent when this
+inventory's "Present" column was first written and have since been built
+for real — see `.reports/component-parity.md`'s "Status refresh" sections.
+This file's rows were correct about *existence* throughout; the *behaviour*
+and *text* axes they explicitly deferred are `component-parity.md`'s and
+`TRANSLATION_PARITY.md`'s job, not re-litigated here.
