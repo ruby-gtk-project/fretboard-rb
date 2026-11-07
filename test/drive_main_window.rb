@@ -173,6 +173,54 @@ GtkDriver.drive(app, shots: "tmp/shots") do |d, application|
     d.shot("08-variant-picked")
   end
 
+  d.step("looking up an unknown chord and asking for variants hits the empty state") do
+    window.call.entry.entry.text = "zz"
+    window.call.entry.entry.signal_emit("activate")
+    act(window.call, "more-variants")
+  end
+
+  d.step("the no-variants empty state is showing") do
+    d.check("variants page is showing") { window.call.navigation_stack.visible_page.tag == "more-variants" }
+    d.check("the empty state, not a variant list") { window.call.variants_stack.visible_child_name == "no-variants" }
+    d.shot("07b-no-variants")
+  end
+
+  # win.chord-view pushes the "chord-view" tag onto the navigation stack, but
+  # that page is the root and never leaves the stack (upstream's window.rs
+  # does the exact same push_by_tag("chord-view") with no accelerator bound to
+  # it anywhere), so libadwaita logs "page already in navigation stack" and
+  # leaves the visible page untouched — confirmed against a standalone
+  # Adwaita::NavigationView repro, not a port bug. The real way back is the
+  # header bar's generated back button, which calls pop.
+  d.step("the chord-view action is a no-op while another page is on top") do
+    act(window.call, "chord-view")
+  end
+
+  d.step("the no-variants page, not chord-view, is still showing") do
+    d.check("still on more-variants") { window.call.navigation_stack.visible_page.tag == "more-variants" }
+  end
+
+  d.step("popping the stack is what actually returns to the chord view") do
+    window.call.navigation_stack.pop
+  end
+
+  d.step("back on the chord view") do
+    d.check("chord view is showing") { window.call.navigation_stack.visible_page.tag == "chord-view" }
+  end
+
+  d.step("restoring C and asking the entry to focus itself") do
+    window.call.entry.overwrite_text("C")
+    window.call.entry.entry.signal_emit("activate")
+    act(window.call, "focus-entry")
+  end
+
+  d.step("the focus-entry action grabbed focus") do
+    # Gtk::Entry is a composite widget whose actual focus lands on its inner
+    # Gtk::Text, so the entry itself never reports has_focus? true — its
+    # focus_child does.
+    d.check("the entry has focus") { window.call.entry.entry.focus_child&.has_focus? }
+  end
+
   d.step("opening the primary menu and flipping the guitar over") do
     window.call.menu_button.popup
     click_menu_item(window.call.menu_button.popover, "Left-handed")
