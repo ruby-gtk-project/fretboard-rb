@@ -201,6 +201,11 @@
             pkgs.xvfb-run
             pkgs.gsettings-desktop-schemas
             pkgs.adwaita-icon-theme
+            # Validates data/*.desktop.in.in, data/*.metainfo.xml.in.in and
+            # data/*.gschema.xml the way upstream's data/meson.build test()
+            # entries do; see script/validate-data.sh.
+            pkgs.desktop-file-utils
+            pkgs.appstream
           ] ++ gtkStack;
 
           # Icons, GSettings schemas and the GTK portal all resolve through

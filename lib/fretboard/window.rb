@@ -19,8 +19,8 @@ module Fretboard
   #
   # Ported from upstream's src/widgets/window.blp and src/widgets/window.rs.
   # The window's actions are the same, and so are the three pages and their
-  # tags; upstream's GSettings-backed "handedness" property is backed by this
-  # port's JSON settings file instead.
+  # tags; the "handedness" property is backed by the same real GSettings key
+  # upstream's is (see settings.rb).
   class Window
     include I18n
 

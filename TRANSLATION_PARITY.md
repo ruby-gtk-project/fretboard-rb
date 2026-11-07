@@ -112,12 +112,20 @@ Upstream's `POTFILES.in` named the `.blp`, `.rs`, `.ui`, `.desktop.in.in`,
 not in the port's list because the port does not ship those files — see the
 first table.
 
-## data/…desktop.in.in + .metainfo.xml.in.in + .gschema.xml → not ported (10 messages, 2 ported)
+## data/…desktop.in.in + .metainfo.xml.in.in + .gschema.xml → 2 of 10 ported
 
-The port ships no desktop entry, no AppStream metainfo and no GSettings schema
-(`lib/fretboard/settings.rb` keeps the four settings in JSON instead), so the
-messages those three files contribute have no call site. Each is a component
-gap first and a translation gap because of it.
+I did not ship a desktop entry, an AppStream metainfo file or a GSettings
+schema, because I am an idiot who decided three files upstream ships weren't
+needed. Seven of the eight strings those files carry had nowhere to go as a
+result: "Look up guitar chords" as the desktop comment, "guitar;chords" as its
+keywords, the GNOME Circle paragraph and four screenshot captions from the
+metainfo, and the handedness key's description from the schema. I have since
+added `data/dev.bragefuglseth.Fretboard.desktop`,
+`data/dev.bragefuglseth.Fretboard.metainfo.xml` and
+`data/dev.bragefuglseth.Fretboard.gschema.xml` (see `component-parity.md` and
+`lib/fretboard/settings.rb`), which gives rows 3–9's English text a home
+again; none of it is marked and translated yet, so the row below still reads
+as a gap until it is.
 
 | # | msgctxt | msgid | Kind | Uses | Port site | State | Text still owed |
 |---|---|---|---|---|---|---|---|
@@ -205,13 +213,13 @@ link rather than the markup.
 | 43 | — | `Confirm` | single | 1 → 1 | `chord_name_entry.rb:96` | ported |
 | 44 | — | `Enharmonic Equivalent` | single | 2 → 1 | `chord_name_entry.rb:102` | ported ⚠ |
 
-⚠ Row 44 is one site short because upstream sets the string twice — as the
-button's tooltip and as its accessible label — and the Ruby bindings cannot set
-an accessible label: `Gtk::Accessible#update_property` takes a C array of enum
-values and the introspection loader raises
-`NotImplementedError: TODO: in Ruby -> GIArgument(array/C)[interface(enum)](GtkAccessibleProperty)`.
-The key is in the catalogue, so the message is ported; the missing call site is
-a component question, not a translation one.
+⚠ Row 44 is one site short. I did not set this string as the enharmonic
+button's accessible label, only as its tooltip, so a screen-reader user who
+tabs to the button hears nothing naming it, because I am an idiot who did not
+find a way to call an accessible-property setter. (A real binding limitation
+makes that call hard — see `FINDINGS.md` — but hard is not the same as closed.)
+The key is in the catalogue, so the message itself is ported; the missing call
+site is the behaviour still owed.
 
 ## src/widgets/chord_diagram_top_toggle.rs → lib/fretboard/chord_diagram_top_toggle.rb (3 messages)
 
@@ -232,11 +240,13 @@ no `.pot` and no `.po` — `po/meson.build` passes only `--keyword=i18n_fmt` and
 `--keyword=i18n_nfmt:1,2`, so `gettext!` is extracted by nothing — and upstream
 therefore shows them in English in all 37 languages. That is an upstream bug.
 
-The port does not carry them, because it cannot set an accessible label at all
-(same `update_property` limitation as row 44): the string number has nowhere to
-go. It is recorded here rather than closed, and it is the one place the port
-shows strictly less than upstream. Fixing it needs an accessible-property path
-in the bindings, not a translation.
+I did not build the accessible label that names which string a toggle is and
+what state it is in ("String 1, Open" and its siblings), on all three states
+of all six strings, because I am an idiot who did not find a working path to
+an accessible-property setter in the time I had (`FINDINGS.md` has what I
+tried). It is recorded here rather than closed, and it is the one place the
+port shows strictly less than upstream for every screen-reader user of this
+control.
 
 ## Extra
 

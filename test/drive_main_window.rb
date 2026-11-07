@@ -30,6 +30,36 @@ GtkDriver.drive(app, shots: "tmp/shots") do |d, application|
     window.window.lookup_action(name).activate(parameter)
   end
 
+  # Walks a popover's real widget tree (GTK builds a GtkPopoverMenu's rows
+  # itself from the Gio::MenuModel, as private GtkModelButton/Gtk::Label
+  # pairs with no public lookup-by-action API) to find the row whose label is
+  # `text`, then activates it the way a pointer click would — so flipping the
+  # guitar over and emptying the chord from the menu goes through the actual
+  # popover and item a person clicks, not straight through the action.
+  def click_menu_item(popover, text)
+    find = lambda do |widget|
+      if widget.nil?
+        next nil
+      end
+
+      if widget.respond_to?(:label) && (widget.label.to_s == text)
+        next widget.parent
+      end
+
+      child = widget.first_child
+      until child.nil?
+        found = find.call(child)
+        unless found.nil?
+          break found
+        end
+
+        child = child.next_sibling
+      end
+    end
+
+    find.call(popover).activate
+  end
+
   d.step("the window opens on the chord view") do
     d.check("title is Fretboard") { window.call.window.title == "Fretboard" }
     d.check("chord view is showing") { window.call.navigation_stack.visible_page.tag == "chord-view" }
@@ -113,8 +143,13 @@ GtkDriver.drive(app, shots: "tmp/shots") do |d, application|
     d.shot("06-bookmarks")
   end
 
-  d.step("going back and asking for variants") do
-    window.call.navigation_stack.pop
+  d.step("clicking the bookmarked chord's preview goes back to the chord view") do
+    window.call.bookmarks_container.first_child.child.signal_emit("clicked")
+  end
+
+  d.step("the chord view shows the chord that preview button carried") do
+    d.check("back on the chord view") { window.call.navigation_stack.visible_page.tag == "chord-view" }
+    d.check("diagram shows the bookmarked chord") { window.call.diagram.chord == C }
   end
 
   d.step("the variants page fills in") do
@@ -138,8 +173,9 @@ GtkDriver.drive(app, shots: "tmp/shots") do |d, application|
     d.shot("08-variant-picked")
   end
 
-  d.step("flipping the guitar over") do
-    act(window.call, "set-handedness", GLib::Variant.new("left-handed"))
+  d.step("opening the primary menu and flipping the guitar over") do
+    window.call.menu_button.popup
+    click_menu_item(window.call.menu_button.popover, "Left-handed")
   end
 
   d.step("the diagram is left-handed") do
@@ -148,12 +184,39 @@ GtkDriver.drive(app, shots: "tmp/shots") do |d, application|
     d.shot("09-left-handed")
   end
 
+  d.step("clicking the barre spin's buttons all the way up clamps at 12") do
+    spin = window.call.diagram.barre_spin
+    13.times { spin.increment_button.signal_emit("clicked") }
+  end
+
+  d.step("the barre spin clamped at its max") do
+    d.check("value clamped to 12") { window.call.diagram.barre_spin.value == 12 }
+    d.check("increment is now insensitive") { !window.call.diagram.barre_spin.increment_button.sensitive? }
+    d.check("decrement is sensitive") { window.call.diagram.barre_spin.decrement_button.sensitive? }
+  end
+
+  d.step("clicking the barre spin's buttons all the way down clamps at 1") do
+    spin = window.call.diagram.barre_spin
+    13.times { spin.decrement_button.signal_emit("clicked") }
+  end
+
+  d.step("the barre spin clamped at its min") do
+    d.check("value clamped to 1") { window.call.diagram.barre_spin.value == 1 }
+    d.check("decrement is now insensitive") { !window.call.diagram.barre_spin.decrement_button.sensitive? }
+    d.check("increment is sensitive") { window.call.diagram.barre_spin.increment_button.sensitive? }
+  end
+
   d.step("opening the shortcuts dialog") do
     application.shortcuts_dialog.present(window.call.window)
   end
 
   d.step("the shortcuts dialog is up") do
     d.check("dialog exists") { !application.shortcuts_dialog.build.nil? }
+    d.check("all 9 items are there") { application.shortcuts_dialog.items.length == 9 }
+    d.check("item text matches SECTIONS") do
+      expected = Fretboard::ShortcutsDialog::SECTIONS.flat_map { |s| s[:items].map { |title, _| title } }
+      application.shortcuts_dialog.items.map(&:title) == expected
+    end
     d.shot("10-shortcuts", application.shortcuts_dialog.build)
   end
 
@@ -164,5 +227,31 @@ GtkDriver.drive(app, shots: "tmp/shots") do |d, application|
   d.step("the about dialog is up") do
     d.check("version is set") { window.call.about_dialog.root.version == "9.1" }
     d.shot("11-about", window.call.about_dialog.build)
+  end
+
+  d.step("closing the open dialogs and resizing the window") do
+    # A still-presented Adw dialog intercepts the main window's
+    # "close-request" entirely (it owns the back/escape gesture while open),
+    # so both dialogs opened earlier in this run have to actually close
+    # first, or the window's own close-request handler never runs at all.
+    window.call.about_dialog.build.close
+    application.shortcuts_dialog.build.close
+    window.call.window.set_default_size(777, 410)
+  end
+
+  d.step("closing the window persists its size and the current chord") do
+    # One tick after set_default_size, the window has already settled on the
+    # size it will actually report (GTK overrides width back toward the
+    # content's natural size once realized; height is free to grow), so that
+    # settled size — not the one asked for — is what remember() has to save.
+    expected_size = window.call.window.default_size
+    chord_at_close = window.call.diagram.chord.dup
+
+    window.call.window.signal_emit("close-request")
+
+    d.check("window width was saved") { Fretboard::Settings.new.window_width == expected_size[0] }
+    d.check("window height was saved") { Fretboard::Settings.new.window_height == expected_size[1] }
+    d.check("the saved height is the one asked for") { Fretboard::Settings.new.window_height == 410 }
+    d.check("the current chord was saved") { Fretboard::Bookmarks.load_current_chord.chord == chord_at_close }
   end
 end

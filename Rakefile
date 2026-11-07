@@ -70,6 +70,15 @@ end
 desc "Generate YARD documentation"
 task docs: "yard"
 
+# This port's equivalent of upstream's three data/meson.build test()
+# entries (Validate desktop file, Validate appstream file, Validate schema
+# file) — see script/validate-data.sh. Requires desktop-file-validate,
+# appstreamcli and glib-compile-schemas, which the dev shell provides.
+desc "Validate the desktop entry, AppStream metainfo and GSettings schema in data/"
+task :validate_data do
+  sh("script/validate-data.sh")
+end
+
 # simplecov:disable
 ### MONOREPO FAMILY TASKS
 if Dir.exist?(File.join(__dir__, "gems"))

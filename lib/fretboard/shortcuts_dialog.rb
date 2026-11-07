@@ -54,6 +54,11 @@ module Fretboard
 
     def present(parent) = build.present(parent)
 
+    # Every Adwaita::ShortcutsItem the dialog was built with, in the order
+    # SECTIONS lists them, so a test can assert on the dialog's actual
+    # widgets rather than re-deriving the expected text from SECTIONS itself.
+    def items = @items ||= []
+
     def root
       @root ||= Adwaita::ShortcutsDialog.new.tap do |dialog|
         # Upstream's .ui leaves the title to libadwaita, which translates its
@@ -87,6 +92,8 @@ module Fretboard
           unless options[:action].nil?
             shortcut.action_name = options[:action]
           end
+
+          items << shortcut
         end
       end
   end

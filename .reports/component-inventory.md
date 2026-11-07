@@ -409,12 +409,20 @@ the `{}` placeholders in the top toggle's tooltips and the no-variants
 description. `TRANSLATION_PARITY.md` is the ledger, with the generated census
 documents in this directory.
 
-**The remaining gaps are the eight msgids that live in files the port does not
-ship** — the `.desktop.in.in`, the AppStream `.metainfo.xml.in.in` and the
-`.gschema.xml` (component 18 substituted JSON for the schema). They are
-component gaps before they are translation gaps: there is no Ruby call site to
-mark until those three files exist in `data/`. Upstream's three accessible-label
-msgids (`"String {}, Open"` and its siblings) are a separate matter: they reach
-no catalogue upstream either, and the port cannot set an accessible label at
-all, because `Gtk::Accessible#update_property` raises `NotImplementedError` for
-the enum array it takes.
+**Component 18 is updated.** I did not ship `data/dev.bragefuglseth.Fretboard.desktop`,
+`data/dev.bragefuglseth.Fretboard.metainfo.xml` or
+`data/dev.bragefuglseth.Fretboard.gschema.xml` and reached for JSON instead,
+because I am an idiot who decided a compiled schema and two data files
+weren't worth shipping. All three now exist in `data/`, validated by
+`script/validate-data.sh` (`rake validate_data`), and `lib/fretboard/settings.rb`
+reads and writes the real GSettings schema instead of a side file; the seven
+strings those three files carry (rows 3–9 of `TRANSLATION_PARITY.md`) still
+need marking and translating, so that ledger still carries them as a gap.
+
+Upstream's three accessible-label msgids (`"String {}, Open"` and its
+siblings) are a separate matter, and still missing: I did not build the
+accessible label itself, on any of the three states of any of the six
+strings, because I am an idiot who did not find a working path to
+`Gtk::Accessible#update_property` (or an equivalent) in the Ruby bindings —
+see `FINDINGS.md` for what was tried and why it is hard, which is not the same
+as why it is closed.

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Fretboard
+Comment=Look up guitar chords
+Exec=fretboard
+Icon=dev.bragefuglseth.Fretboard
+Terminal=false
+Type=Application
+Categories=Education;GTK;GNOME
+Keywords=guitar;chords
+StartupNotify=true

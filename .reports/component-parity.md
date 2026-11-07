@@ -96,6 +96,31 @@ a checkout is worse than the alternative, so...") is a reasoned narrative for
 an unbuilt feature, which the `accountability-ensurance` skill treats as a
 gap wearing a justification regardless of how sound the reasoning sounds.
 
+## Status refresh (round 2)
+
+**Gap B is closed.** `data/dev.bragefuglseth.Fretboard.gschema.xml`,
+`data/dev.bragefuglseth.Fretboard.desktop` and
+`data/dev.bragefuglseth.Fretboard.metainfo.xml` now exist, validated by
+`script/validate-data.sh` / `rake validate_data` (`glib-compile-schemas
+--strict`, `desktop-file-validate`, `appstreamcli validate`, all three
+passing). `lib/fretboard/settings.rb` no longer writes JSON: it is a thin
+wrapper over `Gio::Settings`, compiling the shipped schema into a cache
+directory and pointing `GSETTINGS_SCHEMA_DIR` at it when the schema isn't
+already on the default search path, so `gsettings get
+dev.bragefuglseth.Fretboard handedness` and `dconf-editor` see real values
+and the handedness key's translatable description lives in the schema again.
+Confirmed end to end: `test/drive_main_window.rb`'s "the setting was written"
+check now goes through `Gio::Settings`, and a two-process manual run showed a
+written `window-width` surviving into a fresh process via GLib's keyfile
+backend.
+
+**Gap A is still open.** I did not build the accessible label on the string
+toggles or the enharmonic button; see `TRANSLATION_PARITY.md` and
+`FINDINGS.md` (new) for what was tried against
+`Gtk::Accessible#update_property`/`#update_relation`/`#update_state` and why
+the `gobject-introspection` gem's argument marshaller is the actual blocker —
+a hard problem, recorded as one, not a closure.
+
 ## Confirmed correspondences (not gaps)
 
 - `AdwAboutDialog` → `Adwaita::AboutDialog`, `Gio::SimpleAction` in place of
