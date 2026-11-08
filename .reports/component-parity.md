@@ -172,6 +172,18 @@ trusting round 3's text:
 carry the single remaining open gap, Gap A — the accessible-label
 regression — and no other row has an open correctness gap.**
 
+## Status refresh (round 5, this pass)
+
+`ruby` `HEAD` is `9761cbe`, `origin/main` is unchanged at `781a20b`, and no
+commit since round 4 touched `lib/`, `exe/`, or `data/` — so no row's
+verdict could have moved. Re-checked anyway rather than assuming stability:
+`grep -rn update_property lib/` still returns nothing (Gap A open, rows 9
+and 11 unchanged), `script/validate-data.sh` still passes 3/3 (row 18 still
+closed), and the drive gate is still 72/72 live (row 16's exercised
+behaviour still covered — see `.reports/test-parity.md`). **No row's
+verdict changed this round. 19/21 parity, 2 rows (Gap A) open, 0 other open
+gaps.**
+
 ## Confirmed correspondences (not gaps)
 
 - `AdwAboutDialog` → `Adwaita::AboutDialog`, `Gio::SimpleAction` in place of

@@ -171,3 +171,42 @@ rather than leaking into the sentence that states the gap in
   (**72** checks, 0 failed, round 4), the RSpec suite (**38 examples, 0
   failures**, round 4) and the data-validation gate (3/3) was reproduced live
   in this pass, not copied from a prior report's text.
+
+## Round 5 (this pass, `HEAD` `9761cbe`) — nothing to find, confirmed by reproduction rather than assumed
+
+`ruby` `HEAD` is `9761cbe` (round 4's own report commit) and `origin/main`
+is still `781a20b` — no commit since round 4 touched `lib/`, `exe/`, or any
+root `.md`. Re-ran `find-excuses.sh .` and the broad grep across `lib/`,
+`exe/`, `.reports/`, and `*.md` anyway, rather than skipping the check
+because nothing should have changed:
+
+```
+$ grep -rniE 'TODO|FIXME|not implemented|for now|in a future' lib/ exe/ .reports/ *.md
+```
+
+Same two non-findings as every prior round — `FINDINGS.md:20`'s quoted
+`NotImplementedError` exception text, and the `n/a` table-cell hits in
+`component-parity.md`/`component-inventory.md`/`test-parity.md` meaning
+"axis does not apply", checked by hand against each row again. No new
+construction. The `accountability-ensurance.md`
+"dropped deliberately"/"by design"/"upstream does this too" hits the script
+also flags are this file's own prior round's meta-text naming the patterns
+it checks for (lines in the "What was checked and found clean" / "did not
+find" sections) — not excuses themselves; re-confirmed by reading them in
+context again this round, same as last round.
+
+Re-ran the dev-shell banner command, the two drive scripts, and
+`script/validate-data.sh` live (see `.reports/test-parity.md` round 5 for
+full transcripts): 72/72 drive checks, 38/0 RSpec, 3/3 data validation — all
+identical to round 4's numbers, reproduced fresh rather than copied. No
+false-green risk found: nothing in `.reports/` or `TRANSLATION_PARITY.md`
+claims a number this pass's live runs didn't also produce.
+
+**The one open item remains open and still stated honestly.** `FINDINGS.md`'s
+accessible-label entry and `component-parity.md`/`TRANSLATION_PARITY.md`'s
+references to it were re-read; the admission still leads, the binding
+difficulty is still confined to `FINDINGS.md`, and no document anywhere
+claims the accessible-label gap is closed. This round's verdict: **no new
+excuse, no new false-green, no regression in how the one real gap is
+described. The port's own paper trail still correctly reports itself as
+incomplete.**

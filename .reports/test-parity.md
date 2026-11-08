@@ -248,3 +248,51 @@ then reads `window.call.entry.entry.text`.
   string-head toggles and the enharmonic button are not built at all**
   (`grep -rn update_property lib/` → nothing). This is a code gap tracked in
   `component-parity.md`, not a missing test — there is nothing to test yet.
+
+## Round 5 (this pass) — no code change since round 4, everything re-run live anyway
+
+`ruby` `HEAD` is `9761cbe` and `origin/main` is still `781a20b` — identical
+to what round 4 audited (`git log 407c34b..HEAD -- lib/ exe/ data/ spec/
+test/` is empty: the only commit since round 4 was round 4's own report
+commit). A round that found nothing changed is still obligated to re-run
+the gate rather than copy the number forward, so it was:
+
+```
+$ nix develop --command xvfb-run -a ruby test/drive_main_window.rb
+56 of 56 checks passed
+DRIVE OK
+
+$ nix develop --command xvfb-run -a ruby test/drive_translations.rb
+16 of 16 checks passed
+DRIVE OK
+
+$ nix develop --command ruby -e 'require "rspec/core"; exit RSpec::Core::Runner.run(["--format", "progress", "--require", "spec_helper", "spec"])'
+[spec_helper] kettle-test is not available; falling back to plain RSpec (see spec/README.md)
+38 examples, 0 failures
+
+$ nix develop --command bash script/validate-data.sh
+== Validate desktop file ==
+== Validate appstream file ==
+✔ Validation was successful: pedantic: 1
+== Validate schema file ==
+All three data files are valid.
+```
+
+56 + 16 = 72, matching this round's runtime gate (72 checks, 0 failed)
+exactly, and 38/0 for RSpec, 3/3 for data validation — all identical to
+round 4, reproduced fresh rather than assumed stable.
+
+Two of the main-window driver's debug screenshots failed this run
+(`02-am`, `10-shortcuts`, `11-about` across the two runs shown here —
+the flaky set varies slightly run to run): `RuntimeError: widget produced
+no render node (not realised yet?)`. Checked whether this is a hidden test
+failure: it is not — `shot` is a best-effort PNG dump wrapped so a render
+timing miss cannot fail the drive, and none of the 56 `ok`/`DRIVE OK`
+checks depend on a screenshot having been written. Recorded here so a
+future pass doesn't mistake "screenshot flaked" for "check failed"; it is
+not scored and not a parity gap, but it is real non-determinism in the
+driver's own instrumentation worth someone eventually tightening (e.g. a
+frame-clock wait before the dump) — tracked, not silently absorbed.
+
+**No change to the verdict.** Accessible labels (Gap A) remain the one
+open item; `grep -rn update_property lib/` still returns nothing.

@@ -279,6 +279,17 @@ tried). It is recorded here rather than closed, and it is the one place the
 port shows strictly less than upstream for every screen-reader user of this
 control.
 
+**Round 5 re-verification (this pass, `HEAD` `9761cbe`):** no commit since
+round 4 touched `po/`, `data/`, or the catalogue, so re-ran the same two
+live checks rather than trusting the unchanged prose: `nix develop
+--command xvfb-run -a ruby test/drive_translations.rb` (still 16/16, DRIVE
+OK) and `msgfmt -c -o /dev/null po/*.po` for all 37 files (still clean).
+The accessible-label admission above is unchanged and still first-person
+with the gap still open — `grep -rn update_property lib/` still returns
+nothing. 47/47 message count, 37/37 languages, and the three un-extracted
+upstream accessible-label strings all hold exactly as stated; nothing in
+this file moved this round.
+
 ## Extra
 
 None. Every key the port emits is a key upstream's `.po` files already carry.
