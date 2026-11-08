@@ -172,21 +172,79 @@ It is also not an upstream-parity gap (upstream has no specs to compare
 against) — it is a port-tooling defect this audit is obligated to say
 plainly rather than let the drive gate's unrelated 68/68 stand in for it.
 
+## Round 4 (this pass) — re-verified live against `HEAD` `407c34b`
+
+Both headline findings from the prior pass were closed in the intervening
+commit `1e5a985` ("Make the RSpec suite runnable, cover chord_ops/
+chord_name_algorithm/database, and translate data/*.desktop|.metainfo.xml").
+Re-ran everything live rather than trusting that commit's message:
+
+```
+$ nix develop --command xvfb-run -a ruby test/drive_main_window.rb
+56 of 56 checks passed
+DRIVE OK
+
+$ nix develop --command xvfb-run -a ruby test/drive_translations.rb
+16 of 16 checks passed
+DRIVE OK
+```
+
+56 + 16 = **72**, matching this round's runtime gate exactly (72 checks,
+0 failed). The main-window driver grew from 52 to 56 checks over the prior
+pass's 52/16=68 split — the 4 new checks are
+`spec/fretboard/{chord_ops,chord_name_algorithm,database}_spec.rb`'s sibling
+drive step (`EM11_NOT_IN_DATABASE`, see below) plus its own assertions, not a
+renumbering of old ones; read `test/drive_main_window.rb:114-134` to confirm
+the new step's checks are additive.
+
+**The RSpec suite now runs, in the exact command the dev shell's own banner
+names.** Reproduced live:
+
+```
+$ nix develop --command ruby -e 'require "rspec/core"; exit RSpec::Core::Runner.run(["--format", "progress", "--require", "spec_helper", "spec"])'
+[spec_helper] kettle-test is not available; falling back to plain RSpec (see spec/README.md)
+
+..................................
+
+Finished in 0.0179 seconds (files took 0.37491 seconds to load)
+38 examples, 0 failures
+```
+
+`spec/spec_helper.rb` now rescues the `kettle/test/rspec` `LoadError` and
+falls back to plain RSpec (announced on stderr, not silently), closing last
+round's headline finding: the fork's own advertised "run the specs" command
+executes and passes. Note `bundle exec rspec` still fails
+(`rspec-core is not currently included in the bundle`) — but that is **not**
+the command the banner advertises, and the banner's own command is the one
+that matters here.
+
+**`ChordNameAlgorithm` is no longer unexercised.** `spec/fretboard/
+chord_name_algorithm_spec.rb` exists (part of the 38 examples above), and
+`test/drive_main_window.rb:114-134` adds a real end-to-end drive step: clicks
+a fingering (`[0,0,0,0,0,2]`, "EM11_NOT_IN_DATABASE") absent from
+`data/chords.txt` through the actual diagram-toggle click path, and asserts
+`window.rb:515`'s fallback (`name || ChordNameAlgorithm.calculate_chord_name
+(chord) || ""`) fires and the entry shows "Em11" — the real code path, not a
+direct call to the algorithm bypassing `window.rb`. Confirmed by reading
+`test/drive_main_window.rb:117-134`: the step does
+`window.call.diagram.chord = EM11_NOT_IN_DATABASE.dup` then
+`window.call.diagram.toggle(5, 0).button.signal_emit("clicked")`, and only
+then reads `window.call.entry.entry.text`.
+
 ## Verdict
 
 - Source-level test bijection: **parity (0/0)**, correctly so — upstream has
   no `#[test]`s.
 - Build-validation test bijection (`meson test`): **3 upstream, 3 ported —
   closed.**
-- Runtime gate: **68/68 checks pass, reproduced live**, and now exercises
-  real interaction paths (clicks, not property reads) for every component the
-  prior pass flagged as under-covered, except accessibility.
-- **One component, `ChordNameAlgorithm`, has zero test coverage of any
-  kind** — not driven by either `test/drive_*.rb`, not covered by any RSpec
-  example (there are none).
-- **The RSpec suite cannot run in this fork's own documented dev shell**
-  (`LoadError: cannot load such file -- kettle/test/rspec`, reproduced
-  live). Whether or not `spec/` ever grows examples, the command the project
-  tells a developer to run does not work today. This is this pass's
-  headline test-parity finding — a suite that cannot execute is a stronger
-  claim than a suite that is merely empty.
+- Runtime gate: **72/72 checks pass, reproduced live this round**, exercising
+  real interaction paths for every component tracked, including the
+  previously-unexercised `ChordNameAlgorithm` fallback, except accessibility
+  (see `component-parity.md` Gap A — not a test-parity question, a code gap).
+- **The RSpec suite runs and passes (38 examples, 0 failures), in the exact
+  command the dev shell's own banner advertises** — closed this round, and
+  re-verified live in this pass, not copied from the commit message.
+- Remaining open item, same as every prior round: **accessible labels on the
+  string-head toggles and the enharmonic button are not built at all**
+  (`grep -rn update_property lib/` → nothing). This is a code gap tracked in
+  `component-parity.md`, not a missing test — there is nothing to test yet.

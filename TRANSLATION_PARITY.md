@@ -18,6 +18,12 @@
 
 Report line: **47/47 messages · 44/54 occurrences · 37/37 languages · 1,638 strings · de verified on screen.**
 
+**Round 4 re-verification (this pass, `HEAD` 407c34b):** re-ran
+`nix develop --command xvfb-run -a ruby test/drive_translations.rb`
+(16/16, DRIVE OK) and `msgfmt -c -o /dev/null po/*.po` for all 37 files live;
+both still hold exactly as this section states, with no changes to the
+catalogue or the data files since the previous round.
+
 Generated documents, regenerated with the `translation-parity` skill's scripts
 and never hand-edited: `.reports/upstream-catalogue.yaml`,
 `.reports/port-catalogue.yaml`, `.reports/translation-parity.yaml`. As of the

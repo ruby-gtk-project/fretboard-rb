@@ -141,6 +141,37 @@ no RSpec example, because `spec/` has none and, separately, the suite
 cannot even load in this fork's dev shell — see `.reports/test-parity.md`'s
 headline finding.
 
+## Status refresh (round 4, this pass)
+
+Re-verified live against `HEAD` `407c34b` / upstream `781a20b`, rather than
+trusting round 3's text:
+
+- **Row 16 (`chord_name_algorithm`) is closed.** Commit `1e5a985` (after
+  round 3) added `spec/fretboard/chord_name_algorithm_spec.rb` and a real
+  drive step in `test/drive_main_window.rb:114-134` that clicks a fingering
+  absent from `data/chords.txt` through the live diagram and asserts
+  `window.rb:515`'s fallback produces "Em11" in the entry. Reproduced live:
+  `nix develop --command xvfb-run -a ruby test/drive_main_window.rb` passes
+  56/56, including this step. Verdict upgraded from "file-level parity,
+  behaviour unexercised" to **parity**.
+- **Gap A (accessible labels, rows 9/11) is still open.** `grep -rn
+  update_property lib/` still returns nothing this round. No change.
+- The drive gate is now **72/72** (56 main-window + 16 translation checks,
+  both reproduced live this pass), up from 68/68 at round 3 — the increase is
+  the new `ChordNameAlgorithm` drive step, not a renumbering.
+- `.reports/component-inventory.md`'s GSettings-schema row, which still read
+  "needs verification" as of this round's `407c34b` regeneration despite the
+  schema having shipped 17 hours earlier in `98a1ac6`, has been corrected —
+  see that file and `.reports/accountability-ensurance.md`'s "stale
+  uncertainty" finding. This report's own row 18 (settings) already reflected
+  the real state correctly as of round 2; only the sibling inventory document
+  was stale.
+
+**Updated verdict: 19 of 21 components have full four-axis parity
+(row 16 moved from "unexercised" to parity this round). 2 rows (9 and 11)
+carry the single remaining open gap, Gap A — the accessible-label
+regression — and no other row has an open correctness gap.**
+
 ## Confirmed correspondences (not gaps)
 
 - `AdwAboutDialog` → `Adwaita::AboutDialog`, `Gio::SimpleAction` in place of

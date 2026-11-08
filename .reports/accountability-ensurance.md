@@ -98,6 +98,59 @@ sign the census itself ran against the wrong tree. Flagged so it doesn't
 compound, not rewritten here since this audit's brief is finding gaps, not
 copy-editing every report it touches.
 
+## Round 4 (this pass, `HEAD` `407c34b`) — the prior round's headline finding is now closed, one new (minor) finding
+
+Re-ran `find-excuses.sh .` and the broad grep again against the current tree
+and got the same `n/a`/quoted-exception non-findings as before, re-checked by
+hand against each row — none excuses a real gap. No new excuse construction
+anywhere in `lib/`, `exe/`, or the root `*.md` files.
+
+**The previous pass's headline finding — the dev shell's own banner naming a
+command that cannot run — is closed.** Reproduced live in this pass:
+
+```
+$ nix develop --command ruby -e 'require "rspec/core"; exit RSpec::Core::Runner.run(["--format", "progress", "--require", "spec_helper", "spec"])'
+[spec_helper] kettle-test is not available; falling back to plain RSpec (see spec/README.md)
+...
+38 examples, 0 failures
+```
+
+`spec/spec_helper.rb` was changed (commit `1e5a985`) to rescue the
+`kettle/test/rspec` `LoadError` and fall back to plain RSpec, and three new
+spec files were added. The command the banner advertises now does what the
+banner says. This is a real closure, not a reworded excuse — verified by
+running the exact command, not by reading the commit message.
+
+**New finding — a stale "needs verification" line in `component-inventory.md`
+that understated a confirmed fact, undisturbed across a regeneration.**
+`.reports/component-inventory.md` row "`data/dev.bragefuglseth.Fretboard.gschema.xml`
+as a GSettings *schema*" read "**needs verification** — not confirmed in this
+survey" as of this round's start. But that file was last regenerated at
+`407c34b` (2026-11-07T20:30:25Z) — **17 hours after** `98a1ac6`
+(2026-11-07T03:53:27Z, "Ship real GSettings schema...") had already shipped
+the schema and wired `script/validate-data.sh` to validate it, and *after*
+`.reports/component-parity.md`'s own "Status refresh (round 2)" section had
+already recorded the gap as closed. So one of this port's own reports stated
+uncertainty about a fact two other documents in the same `.reports/`
+directory, committed earlier, already had verified as true. This is not the
+false-green pattern the skill warns about most (a claim of success resting on
+something unexecuted) — it is the inverse: unwarranted caution left
+unreconciled across a regeneration that had every opportunity to notice it.
+Recorded because an audit that treats every stale line as either "excuse" or
+"fine" would miss a third kind of drift: a report that simply fails to update
+itself to match a fact the rest of the port's own paper trail already
+contains. Fixed in this pass (see `.reports/component-inventory.md`).
+
+**What this round did not find:** no new TODO/FIXME/"not implemented"/"for
+now"/"in a future" construction in `lib/`, `exe/`, or any root `.md`; no new
+"dropped deliberately"/"out of scope"/"by design"/"upstream does this too"
+construction anywhere. `FINDINGS.md`'s accessible-label entry was re-read in
+full this pass and still leads with the admission
+("I did not build the accessible label... because...") before the binding
+explanation, and the binding explanation is still confined to `FINDINGS.md`
+rather than leaking into the sentence that states the gap in
+`component-parity.md`/`TRANSLATION_PARITY.md`. No regression there.
+
 ## What was checked and found clean, this pass
 
 - No `TODO`, `FIXME`, "not implemented", "for now", or "in a future" prose
@@ -105,15 +158,16 @@ copy-editing every report it touches.
 - No "dropped deliberately", "out of scope", "not applicable", "by design",
   or "upstream does this too" construction anywhere in `lib/`, `exe/`, the
   root `*.md` files, or `.reports/`.
-- Every gap this round's `component-parity.md` and `test-parity.md` reports
-  (accessible labels; the three untranslated data files; `ChordNameAlgorithm`
-  being unexercised; the spec suite being unable to load) is stated as a
-  first-person admission or a located, reproduced fact — none is wrapped in
-  a reason that reads as a decision.
-- `component-inventory.md`'s "Re-verified 2026-11-07" footer (added this
-  pass) and `component-parity.md`'s "Status refresh (round 3)" section both
-  name what changed and what didn't, rather than silently updating a verdict
-  in place — the skill's rule for correcting a stale claim, followed.
-- Every number this report or its siblings cites for the drive gate (68
-  checks, 0 failed) and the data-validation gate (3/3) was reproduced live
+- The one gap still open this round (accessible labels, Gap A) is stated in
+  `component-parity.md`/`TRANSLATION_PARITY.md` as a first-person admission
+  with the binding limitation confined to `FINDINGS.md`, not wrapped in a
+  reason that reads as a decision.
+- `component-inventory.md`'s corrected GSettings-schema row,
+  `component-parity.md`'s "Status refresh (round 4)" section and this
+  report's own round-4 section each name what changed and what didn't,
+  rather than silently updating a verdict in place — the skill's rule for
+  correcting a stale claim, followed.
+- Every number this report or its siblings cites for the drive gate
+  (**72** checks, 0 failed, round 4), the RSpec suite (**38 examples, 0
+  failures**, round 4) and the data-validation gate (3/3) was reproduced live
   in this pass, not copied from a prior report's text.
