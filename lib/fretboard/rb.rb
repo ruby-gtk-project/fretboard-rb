@@ -1,3 +1,5 @@
+require_relative "rb/version"
+
 # frozen_string_literal: true
 
 # The gem's conventional entry point, named after the RubyGems package
@@ -7,4 +9,3 @@
 # full GTK4/Libadwaita application (lib/fretboard.rb) — resolves to
 # something. The app itself is loaded with `require "fretboard"`, from
 # exe/fretboard and lib/fretboard.rb.
-require_relative "rb/version"
